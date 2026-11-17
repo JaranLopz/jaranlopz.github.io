@@ -1,1 +1,0 @@
-# jaranlopz.github.io
