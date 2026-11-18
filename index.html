@@ -87,7 +87,7 @@
       {
         "@type": "ProfessionalService",
         "@id": "https://oveyo.github.io/#service",
-        "name": "Jorge Aranda López — Game Production & Publisher Diligence Consulting",
+        "name": "Jorge Aranda López, Game Production & Publisher Diligence Consulting",
         "provider": { "@id": "https://oveyo.github.io/#jorge" },
         "url": "https://oveyo.github.io/",
         "areaServed": "Worldwide",
@@ -260,12 +260,6 @@
       50% { transform: translateY(-5px) translateX(-2px); }
     }
 
-    /* Subtle Breathing Animation for Character */
-    @keyframes charBreathe {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-2.5px); }
-    }
-
     /* Star Twinkle */
     @keyframes twinkle {
       0%, 100% { opacity: 0.25; }
@@ -301,9 +295,6 @@
       animation: sparkFloat2 3.9s infinite ease-in-out;
       animation-delay: 0.4s;
     }
-    .animate-char {
-      animation: charBreathe 4s infinite ease-in-out;
-    }
     .star-1 { animation: twinkle 3.5s infinite ease-in-out; }
     .star-2 { animation: twinkle 4.5s infinite ease-in-out 1.2s; }
     .star-3 { animation: twinkle 2.8s infinite ease-in-out 0.7s; }
@@ -323,7 +314,7 @@
       content: '';
       position: absolute;
       bottom: -11px;
-      right: 68px;
+      right: 145px;
       border-width: 11px 11px 0;
       border-style: solid;
       border-color: #1e293b transparent;
@@ -334,7 +325,7 @@
       content: '';
       position: absolute;
       bottom: -13px;
-      right: 67px;
+      right: 144px;
       border-width: 12px 12px 0;
       border-style: solid;
       border-color: rgba(251, 146, 60, 0.45) transparent;
@@ -393,7 +384,7 @@
   </script>
 
   <!-- =====================================================================
-       1. THE CAMPFIRE STAGE (Decluttered "Menos es Más" + 3D Perspective Logs)
+       1. THE CAMPFIRE STAGE (Symmetric 3D Logs + Faceless Static Character)
        ===================================================================== -->
   <header class="relative pt-4 pb-8 md:pt-6 md:pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
 
@@ -435,10 +426,10 @@
         </a>
       </div>
 
-      <!-- MIDDLE INTERACTIVE SCENE: 3 Columns (Left Panels + 3D Log | Center Fire | Right Bubble + Consultant on 3D Log) -->
+      <!-- MIDDLE INTERACTIVE SCENE: 3 Columns (Left Panels + Log | Center Fire | Right Bubble + Faceless Character on Log) -->
       <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end my-auto pt-8 pb-2">
 
-        <!-- LEFT COLUMN (4 cols): Floating Menu Cards over Left Perspective Log -->
+        <!-- LEFT COLUMN (4 cols): Floating Menu Cards over Left Log -->
         <div class="lg:col-span-4 flex flex-col items-center lg:items-start justify-end order-2 lg:order-1">
 
           <!-- 2 Floating Menu Cards -->
@@ -471,25 +462,28 @@
             </a>
           </div>
 
-          <!-- Left 3D Perspective Log (Angled in perspective from bottom-left foreground up-right toward the fire) -->
-          <div class="w-full max-w-[330px] pt-1">
-            <svg viewBox="0 0 430 120" class="w-full h-auto overflow-visible" aria-hidden="true">
-              <!-- Ground shadow under perspective log -->
-              <polygon points="8,108 82,119 415,62 365,48" fill="#030508" opacity="0.78" />
-              <!-- 3D Log Cylinder Body tapering toward the fire (top-right) -->
-              <path d="M 22,56 L 368,18 C 384,18 394,44 378,52 L 58,108 Z" fill="#431c07" stroke="#291003" stroke-width="2" />
-              <!-- Upper warm firelit highlight along the log -->
-              <path d="M 26,56 L 368,18 L 375,30 L 42,76 Z" fill="#7c2d12" opacity="0.75" />
-              <!-- Top fire-catching rim edge -->
-              <path d="M 30,56 L 368,18" stroke="#fb923c" stroke-width="2" opacity="0.55" stroke-linecap="round" />
-              <!-- Bark texture lines following perspective -->
-              <path d="M 95,62 L 225,42 M 155,74 L 315,44 M 240,46 L 350,28" stroke="#291003" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-              <!-- Far cut end (near fire, glowing warm) -->
-              <ellipse cx="373" cy="35" rx="9" ry="17" transform="rotate(-14 373 35)" fill="#7c2d12" stroke="#fb923c" stroke-width="1.2" opacity="0.85" />
-              <!-- Near foreground cut end (bottom-left, larger for 3D depth) -->
-              <ellipse cx="40" cy="82" rx="20" ry="27" transform="rotate(-18 40 82)" fill="#9a4418" stroke="#291003" stroke-width="2.5" />
-              <ellipse cx="40" cy="82" rx="13" ry="18" transform="rotate(-18 40 82)" fill="none" stroke="#5c2409" stroke-width="1.6" />
-              <ellipse cx="40" cy="82" rx="6" ry="8" transform="rotate(-18 40 82)" fill="#5c2409" />
+          <!-- Left 3D Log (Mathematically flush cylinder, exact mirror of Right Log) -->
+          <div class="w-full max-w-[330px]">
+            <svg viewBox="0 0 360 110" class="w-full h-auto overflow-visible" aria-hidden="true">
+              <!-- Ground shadow directly under the log -->
+              <ellipse cx="180" cy="76" rx="145" ry="18" transform="rotate(-6 180 76)" fill="#030508" opacity="0.78" />
+
+              <!-- Cylinder Body: Near Left (50,66, rx=16, ry=24) to Far Right near fire (305,38, rx=11, ry=18) -->
+              <path d="M 50,42 L 305,20 A 11,18 0 0 1 305,56 L 50,90 Z" fill="#4a1d06" stroke="#270e02" stroke-width="2" stroke-linejoin="round" />
+
+              <!-- Upper firelit wood highlight -->
+              <path d="M 50,42 L 305,20 A 11,18 0 0 1 314,30 L 50,58 Z" fill="#7c2d12" opacity="0.85" />
+
+              <!-- Warm top edge catching firelight -->
+              <path d="M 52,42 L 305,20 A 11,18 0 0 1 316,38" fill="none" stroke="#fb923c" stroke-width="2" opacity="0.65" stroke-linecap="round" />
+
+              <!-- Clean bark grain lines aligned with cylinder slope -->
+              <path d="M 95,58 L 195,48 M 165,68 L 275,52 M 215,36 L 288,29" stroke="#270e02" stroke-width="2.2" stroke-linecap="round" opacity="0.75" />
+
+              <!-- Near foreground cut face (Flush at x=50, y=66, rx=16, ry=24) -->
+              <ellipse cx="50" cy="66" rx="16" ry="24" fill="#9a4418" stroke="#270e02" stroke-width="2.2" />
+              <ellipse cx="50" cy="66" rx="10" ry="15" fill="none" stroke="#5c2409" stroke-width="1.6" />
+              <ellipse cx="50" cy="66" rx="4" ry="6" fill="#5c2409" />
             </svg>
           </div>
         </div>
@@ -569,11 +563,11 @@
           </a>
         </div>
 
-        <!-- RIGHT COLUMN (4 cols): Speech Bubble + Seated Consultant on Right 3D Perspective Log -->
+        <!-- RIGHT COLUMN (4 cols): Speech Bubble + Static Faceless Character on Aligned Right Log -->
         <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-end order-1 lg:order-3">
 
-          <!-- Clickable Speech Bubble above the Consultant's Head -->
-          <div class="speech-bubble w-full max-w-sm bg-night-800/95 border border-ember-500/40 rounded-2xl p-5 shadow-2xl backdrop-blur-md mb-3">
+          <!-- Speech Bubble above the Consultant's Head -->
+          <div class="speech-bubble w-full max-w-sm bg-night-800/95 border border-ember-500/40 rounded-2xl p-5 shadow-2xl backdrop-blur-md mb-2">
             <p class="text-[11px] font-bold uppercase tracking-widest text-ember-400 mb-1.5">
               For AA &amp; Indie Founders ($1M–$10M Budgets)
             </p>
@@ -593,71 +587,65 @@
             </div>
           </div>
 
-          <!-- Seated Consultant Illustration on 3D Perspective Log -->
-          <div class="w-full max-w-[330px] flex justify-center lg:justify-end">
-            <svg viewBox="0 0 360 175" class="w-72 sm:w-80 h-auto overflow-visible" role="img" aria-label="Illustration of consultant Jorge Aranda López sitting by the campfire">
-              <!-- Ground Shadow Volume underneath the Right Perspective Log -->
-              <polygon points="32,102 325,168 355,146 68,88" fill="#030508" opacity="0.82" />
-              <ellipse cx="195" cy="138" rx="135" ry="20" fill="#030508" opacity="0.65" />
+          <!-- Static Faceless Character Seated on Symmetrical Right 3D Log -->
+          <div class="w-full max-w-[330px]">
+            <svg viewBox="0 0 360 190" class="w-full h-auto overflow-visible" role="img" aria-label="Minimalist illustration of consultant sitting on a log by the campfire">
+              <!-- Ground shadow directly under the right log and boots -->
+              <ellipse cx="180" cy="156" rx="145" ry="18" transform="rotate(6 180 156)" fill="#030508" opacity="0.78" />
+              <ellipse cx="145" cy="166" rx="38" ry="8" fill="#030508" opacity="0.85" />
 
-              <!-- Right 3D Perspective Log (Angled from near the fire top-left down-right toward the viewer) -->
+              <!-- Right 3D Log (Exact mirror of Left Log: Far Left near fire 55,118 rx=11,ry=18 to Near Right 310,146 rx=16,ry=24) -->
               <g>
-                <!-- 3D Log Cylinder Body widening toward bottom-right foreground -->
-                <path d="M 48,74 L 336,112 L 308,162 L 34,104 Z" fill="#431c07" stroke="#291003" stroke-width="2" />
-                <!-- Upper firelit plane of the log -->
-                <path d="M 48,74 L 336,112 L 324,132 L 40,88 Z" fill="#7c2d12" opacity="0.82" />
-                <!-- Top warm edge catching firelight -->
-                <path d="M 48,74 L 332,111" stroke="#fb923c" stroke-width="2.2" opacity="0.65" stroke-linecap="round" />
-                <!-- Bark grain lines in perspective -->
-                <path d="M 75,94 L 180,115 M 165,122 L 285,146 M 120,88 L 245,108" stroke="#291003" stroke-width="2.2" stroke-linecap="round" opacity="0.8" />
-                <!-- Far cut end facing the fire (top-left, smaller in perspective, warm glow) -->
-                <ellipse cx="41" cy="89" rx="10" ry="15" transform="rotate(14 41 89)" fill="#9a3412" stroke="#fb923c" stroke-width="1.5" />
-                <!-- Near foreground cut end (bottom-right, larger for 3D depth) -->
-                <ellipse cx="322" cy="137" rx="19" ry="26" transform="rotate(18 322 137)" fill="#9a4418" stroke="#291003" stroke-width="2.5" />
-                <ellipse cx="322" cy="137" rx="12" ry="17" transform="rotate(18 322 137)" fill="none" stroke="#5c2409" stroke-width="1.6" />
-                <ellipse cx="322" cy="137" rx="5" ry="7" transform="rotate(18 322 137)" fill="#5c2409" />
+                <!-- Cylinder Body -->
+                <path d="M 310,122 L 55,100 A 11,18 0 0 0 55,136 L 310,170 Z" fill="#4a1d06" stroke="#270e02" stroke-width="2" stroke-linejoin="round" />
+
+                <!-- Upper firelit wood highlight -->
+                <path d="M 310,122 L 55,100 A 11,18 0 0 0 46,110 L 310,138 Z" fill="#7c2d12" opacity="0.85" />
+
+                <!-- Warm top & fire-facing edge catching firelight -->
+                <path d="M 308,122 L 55,100 A 11,18 0 0 0 44,118" fill="none" stroke="#fb923c" stroke-width="2" opacity="0.65" stroke-linecap="round" />
+
+                <!-- Clean bark grain lines aligned with cylinder slope -->
+                <path d="M 265,138 L 165,128 M 195,148 L 85,132 M 145,116 L 72,109" stroke="#270e02" stroke-width="2.2" stroke-linecap="round" opacity="0.75" />
+
+                <!-- Near foreground cut face (Flush at x=310, y=146, rx=16, ry=24) -->
+                <ellipse cx="310" cy="146" rx="16" ry="24" fill="#9a4418" stroke="#270e02" stroke-width="2.2" />
+                <ellipse cx="310" cy="146" rx="10" ry="15" fill="none" stroke="#5c2409" stroke-width="1.6" />
+                <ellipse cx="310" cy="146" rx="4" ry="6" fill="#5c2409" />
               </g>
 
-              <!-- Seated Character (Positioned naturally on the perspective log, facing left toward fire) -->
-              <g class="animate-char">
-                <!-- Legs & Boots resting in foreground perspective -->
-                <path d="M168 104 L132 136 L146 142 L182 110 Z" fill="#1e293b" />
-                <path d="M184 108 L158 142 L172 146 L198 112 Z" fill="#0f172a" />
-                <!-- Boots -->
-                <rect x="118" y="133" width="28" height="12" rx="5" fill="#270e02" stroke="#fb923c" stroke-width="0.8" />
-                <rect x="146" y="139" width="28" height="12" rx="5" fill="#1c0a00" />
+              <!-- Static Faceless Character (Seated cleanly on top of the log at x=175, y=114) -->
+              <g>
+                <!-- Back Leg & Boot -->
+                <path d="M 170,114 L 138,130 L 130,156" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="112" y="152" width="26" height="11" rx="5" fill="#1c0a00" stroke="#fb923c" stroke-width="0.8" />
 
-                <!-- Torso / Cozy Hoodie Jacket with Warm Fire Rim-Light on Left Edge -->
-                <path d="M158 52 C148 56, 146 94, 156 108 L206 112 C212 94, 208 58, 196 52 Z" fill="#334155" stroke="#1e293b" stroke-width="1.5" />
-                <!-- Warm Firelight Highlight on Chest/Shoulder -->
-                <path d="M158 52 C148 56, 146 94, 156 108" stroke="#fb923c" stroke-width="3" fill="none" opacity="0.85" />
+                <!-- Front Leg & Boot -->
+                <path d="M 184,117 L 154,133 L 146,160" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="128" y="156" width="26" height="11" rx="5" fill="#270e02" stroke="#fb923c" stroke-width="0.8" />
 
-                <!-- Left Arm Gesturing Openly Toward the Fire & Left Panels -->
-                <path d="M160 62 L116 74 L104 68" stroke="#fb923c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                <path d="M160 62 L116 74 L104 68" stroke="#475569" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                <!-- Open Hand -->
-                <circle cx="101" cy="67" r="5.5" fill="#fed7aa" />
+                <!-- Back Arm (Gesturing warmly toward the campfire) -->
+                <path d="M 166,72 L 140,82 L 118,75" fill="none" stroke="#fb923c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" />
+                <path d="M 166,72 L 140,82 L 118,75" fill="none" stroke="#475569" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="114" cy="74" r="5" fill="#fed7aa" />
 
-                <!-- Right Arm Holding Warm Campfire Mug -->
-                <path d="M194 64 L172 86 L150 84" stroke="#1e293b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                <!-- Coffee/Tea Mug -->
-                <rect x="136" y="76" width="14" height="16" rx="3" fill="#f97316" stroke="#7c2d12" stroke-width="1.5" />
-                <!-- Rising Steam from Mug -->
-                <path d="M141 72 Q139 65 144 61" stroke="#fde68a" stroke-width="1.5" fill="none" opacity="0.7" />
-                <path d="M146 73 Q148 67 145 63" stroke="#fde68a" stroke-width="1.5" fill="none" opacity="0.5" />
+                <!-- Torso / Cozy Hoodie resting on the log -->
+                <path d="M 162,62 C 152,66 150,100 158,116 L 198,120 C 204,102 202,68 192,62 Z" fill="#334155" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+                <!-- Subtle Hoodie Hood behind neck -->
+                <path d="M 186,60 C 198,60 204,68 196,76" fill="#1e293b" />
+                <!-- Warm Firelight Rim on Front of Torso -->
+                <path d="M 162,62 C 152,66 150,100 158,116" fill="none" stroke="#fb923c" stroke-width="2.8" stroke-linecap="round" opacity="0.85" />
 
-                <!-- Head & Beard (Turned slightly toward viewer/fire) -->
-                <circle cx="176" cy="30" r="17" fill="#fed7aa" />
-                <!-- Warm Firelight on Left Cheek -->
-                <path d="M160 24 A16 16 0 0 0 166 44" stroke="#fb923c" stroke-width="2.5" fill="none" opacity="0.75" />
-                <!-- Hair -->
-                <path d="M160 24 C160 10, 194 10, 194 26 C194 19, 184 16, 174 16 C165 16, 161 20, 160 24 Z" fill="#1e1b18" />
-                <!-- Beard & Friendly Smile -->
-                <path d="M161 31 C161 44, 189 45, 191 31 C187 37, 166 37, 161 31 Z" fill="#292524" />
-                <path d="M168 35 Q174 39 180 35" stroke="#fef3c7" stroke-width="1.8" fill="none" stroke-linecap="round" />
-                <!-- Eyes looking warmly toward the viewer/fire -->
-                <circle cx="168" cy="26" r="1.9" fill="#0f172a" />
-                <circle cx="180" cy="26" r="1.9" fill="#0f172a" />
+                <!-- Front Arm (Resting naturally toward lap/knee) -->
+                <path d="M 190,72 L 184,96 L 162,108" fill="none" stroke="#1e293b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="159" cy="109" r="4.8" fill="#fed7aa" />
+
+                <!-- Faceless Head Silhouette (No eyes, no mouth, clean minimal style) -->
+                <circle cx="177" cy="40" r="15.5" fill="#fed7aa" />
+                <!-- Warm Firelight Rim on Left Side of Face -->
+                <path d="M 164,31 A 15.5,15.5 0 0 0 167,52" fill="none" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+                <!-- Clean Hair Cap Silhouette -->
+                <path d="M 162,36 C 162,21 193,21 193,38 C 193,31 185,27 176,27 C 168,27 163,31 162,36 Z" fill="#1e1b18" />
               </g>
             </svg>
           </div>
@@ -685,7 +673,7 @@
   <main id="main-content">
 
     <!-- =====================================================================
-         CHAPTER 01: ABOUT / CREDENTIALS (Moved to top per peer consultant feedback)
+         CHAPTER 01: ABOUT / CREDENTIALS
          ===================================================================== -->
     <section id="about" class="py-16 md:py-20 bg-night-900/45 border-y border-slate-800/80">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -729,17 +717,17 @@
 
           <div class="lg:col-span-7">
             <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-5">
-              I’ve Seen How Multi-Million Dollar Scope Creep Happens—And How to Stop It
+              I’ve Seen How Multi-Million Dollar Scope Creep Happens, and How to Stop It
             </h3>
             <div class="space-y-4 text-slate-300 leading-relaxed text-base">
               <p>
                 During my time as a Producer at <strong class="text-white" translate="no">Cloud Imperium Games</strong> working on <em translate="no">Star Citizen</em> and <em translate="no">Squadron 42</em>, I coordinated cross-disciplinary engineering, design, and art teams inside one of the most complex, high-pressure production environments in the games industry.
               </p>
               <p>
-                I saw firsthand what happens when ambitious technical vision meets unconstrained scope—and I learned how to build the dependency tracking, milestone gates, and risk registers required to actually ship playable builds.
+                I saw firsthand what happens when ambitious technical vision meets unconstrained scope, and I learned how to build the dependency tracking, milestone gates, and risk registers required to actually ship playable builds.
               </p>
               <p>
-                Today, as a <strong class="text-white" translate="no">PMP® certified producer</strong>, I bring that exact operational rigor to independent and AA founders. You don’t need bloated corporate bureaucracy—you need just enough production structure to prove to publishers like <strong class="text-white" translate="no">Hooded Horse</strong>, <strong class="text-white" translate="no">MicroProse</strong>, <strong class="text-white" translate="no">Kepler</strong>, or <strong class="text-white" translate="no">Raw Fury</strong> that their <span class="tabular-nums">$1M–$10M</span> investment is safe in your hands.
+                Today, as a <strong class="text-white" translate="no">PMP® certified producer</strong>, I bring that exact operational rigor to independent and AA founders. You don’t need bloated corporate bureaucracy. You need just enough production structure to prove to publishers like <strong class="text-white" translate="no">Hooded Horse</strong>, <strong class="text-white" translate="no">MicroProse</strong>, <strong class="text-white" translate="no">Kepler</strong>, or <strong class="text-white" translate="no">Raw Fury</strong> that their <span class="tabular-nums">$1M–$10M</span> investment is safe in your hands.
               </p>
             </div>
           </div>
@@ -822,7 +810,7 @@
             </summary>
             <div class="pt-3 text-xs text-slate-300 space-y-2.5 leading-relaxed">
               <p>
-                <strong class="text-white">The Fix:</strong> We audit every formula in your spreadsheet—separating <span translate="no">Steam</span>/platform fees, <abbr title="Value-Added Tax">VAT</abbr>, 100% publisher recoup, and post-recoup corporate taxes—and benchmark your unit targets against real <span translate="no">SteamDB</span> comparables.
+                <strong class="text-white">The Fix:</strong> We audit every formula in your spreadsheet, separating <span translate="no">Steam</span>/platform fees, <abbr title="Value-Added Tax">VAT</abbr>, 100% publisher recoup, and post-recoup corporate taxes, and benchmark your unit targets against real <span translate="no">SteamDB</span> comparables.
               </p>
               <a href="#services" class="inline-block text-ember-400 hover:text-ember-300 font-semibold underline underline-offset-4">
                 Solved in: €250 Red-Flag Review &amp; Audit &rarr;
@@ -865,7 +853,7 @@
     </section>
 
     <!-- =====================================================================
-         CHAPTER 03: SERVICES & PRICING (EUR, excl. VAT — Free Call + €250 Review + 3 Packages)
+         CHAPTER 03: SERVICES & PRICING (EUR, excl. VAT)
          ===================================================================== -->
     <section id="services" class="cv-auto py-16 md:py-24 bg-night-900/45 border-y border-slate-800/80">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -916,7 +904,7 @@
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-emerald-400 font-bold">&#10003;</span>
-                  <span><strong class="text-white">Minutes 15–20:</strong> Clear recommendation on next steps—even if you don’t hire me.</span>
+                  <span><strong class="text-white">Minutes 15–20:</strong> Clear recommendation on next steps, even if you don’t hire me.</span>
                 </li>
               </ul>
             </div>
@@ -1111,7 +1099,7 @@
     </section>
 
     <!-- =====================================================================
-         CHAPTER 04: CASE STUDY (Narrative Context + Bold Numbers + Approved Testimonial)
+         CHAPTER 04: CASE STUDY
          ===================================================================== -->
     <section id="case-studies" class="cv-auto py-16 md:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -1125,7 +1113,7 @@
 
       <article class="rounded-3xl bg-gradient-to-br from-night-900 via-night-900 to-ember-950/25 border border-slate-800 p-6 sm:p-10 lg:p-12 shadow-2xl">
 
-        <!-- Studio & Project Context Header (Explaining who they are clearly) -->
+        <!-- Studio & Project Context Header -->
         <div class="max-w-4xl mb-10 pb-8 border-b border-slate-800/90">
           <div class="flex flex-wrap items-center gap-2 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-semibold bg-ember-500/15 text-ember-300 border border-ember-500/30">
@@ -1141,10 +1129,10 @@
           </h2>
 
           <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-            <strong class="text-white" translate="no">Broken Rampart Interactive</strong> is an independent European team of 6 specialists—including an <span translate="no">ex-NVIDIA</span> <abbr title="Graphics Processing Unit">GPU</abbr> optimization architect, software engineers, and a medieval historian—building <a href="https://projectrenaissance.brokenrampart.com/" target="_blank" rel="noopener noreferrer" class="text-ember-400 hover:text-ember-300 underline underline-offset-4 font-semibold" translate="no">Project Renaissance</a>, an ambitious medieval grand strategy and real-time tactics game in <span translate="no">Unreal Engine 5</span> capable of rendering <strong class="text-white tabular-nums">10,000 to 40,000 soldiers at 60–80 <abbr title="Frames Per Second">FPS</abbr></strong>.
+            <strong class="text-white" translate="no">Broken Rampart Interactive</strong> is an independent European team of 6 specialists, including an <span translate="no">ex-NVIDIA</span> <abbr title="Graphics Processing Unit">GPU</abbr> optimization architect, software engineers, and a medieval historian, building <a href="https://projectrenaissance.brokenrampart.com/" target="_blank" rel="noopener noreferrer" class="text-ember-400 hover:text-ember-300 underline underline-offset-4 font-semibold" translate="no">Project Renaissance</a>, an ambitious medieval grand strategy and real-time tactics game in <span translate="no">Unreal Engine 5</span> capable of rendering <strong class="text-white tabular-nums">10,000 to 40,000 soldiers at 60–80 <abbr title="Frames Per Second">FPS</abbr></strong>.
           </p>
           <p class="text-slate-300 text-base sm:text-lg leading-relaxed mt-3">
-            After strategy <span translate="no">YouTuber</span> <strong class="text-white" translate="no">STRATMAN</strong> covered their early prototype, the studio organically generated <strong class="text-white tabular-nums">600,000+ YouTube views</strong> (<strong class="text-white tabular-nums">140,000+</strong> on the first showcase video alone) and a <strong class="text-white tabular-nums">1,300+ member Discord community</strong>. Tier-1 strategy publishers (<strong class="text-white" translate="no">Hooded Horse</strong> and <strong class="text-white" translate="no">MicroProse</strong>) opened talks—but before wiring <strong class="text-white tabular-nums">$5.06M USD</strong> across a <strong class="text-white tabular-nums">36-month</strong> timeline, they needed a bulletproof production roadmap and P&amp;L.
+            After strategy <span translate="no">YouTuber</span> <strong class="text-white" translate="no">STRATMAN</strong> covered their early prototype, the studio organically generated <strong class="text-white tabular-nums">600,000+ YouTube views</strong> (<strong class="text-white tabular-nums">140,000+</strong> on the first showcase video alone) and a <strong class="text-white tabular-nums">1,300+ member Discord community</strong>. Tier-1 strategy publishers (<strong class="text-white" translate="no">Hooded Horse</strong> and <strong class="text-white" translate="no">MicroProse</strong>) opened talks. Before wiring <strong class="text-white tabular-nums">$5.06M USD</strong> across a <strong class="text-white tabular-nums">36-month</strong> timeline, they needed a bulletproof production roadmap and P&amp;L.
           </p>
         </div>
 
@@ -1200,7 +1188,7 @@
             </h3>
             <ul class="space-y-3 text-sm text-slate-200 leading-relaxed">
               <li>
-                • <strong class="text-ember-300 tabular-nums">-20% Lower Break-Even Threshold:</strong> Rebuilding the tax and recoup waterfall reduced the publisher’s break-even point by <strong class="text-white tabular-nums">63,250 copies</strong>—dropping from <strong class="text-white tabular-nums">316,250 units down to 253,000 units</strong> at a <strong class="text-white tabular-nums">$40 <abbr title="Suggested Retail Price">SRP</abbr></strong> (<strong class="text-white tabular-nums">50/50</strong> split while keeping <strong class="text-white">100% of their <abbr title="Intellectual Property">IP</abbr></strong>).
+                • <strong class="text-ember-300 tabular-nums">-20% Lower Break-Even Threshold:</strong> Rebuilding the tax and recoup waterfall reduced the publisher’s break-even point by <strong class="text-white tabular-nums">63,250 copies</strong>, dropping from <strong class="text-white tabular-nums">316,250 units down to 253,000 units</strong> at a <strong class="text-white tabular-nums">$40 <abbr title="Suggested Retail Price">SRP</abbr></strong> (<strong class="text-white tabular-nums">50/50</strong> split while keeping <strong class="text-white">100% of their <abbr title="Intellectual Property">IP</abbr></strong>).
               </li>
               <li>
                 • <strong class="text-emerald-300 tabular-nums">+76% Higher Studio Net Profit (+$507K USD):</strong> At the baseline target of <strong class="text-white tabular-nums">400,000 units sold</strong> (<strong class="text-white tabular-nums">$8.0M</strong> net post-<span translate="no">Steam</span> revenue), projected studio net profit rose from <strong class="text-white tabular-nums">$669,000 to $1,176,000 USD</strong>.
@@ -1271,7 +1259,7 @@
             <span class="text-ember-400 group-open:rotate-45 transition-transform text-2xl leading-none">+</span>
           </summary>
           <p class="text-slate-300 text-sm leading-relaxed mt-4 pt-4 border-t border-slate-800/80">
-            I am a <strong class="text-white">Game Producer &amp; Operational Advisor</strong>, not a commission-based sales broker. While I don’t take a percentage of your publishing deal, I prepare the exact production roadmaps, P&amp;L models, and risk registers that publishers’ internal producers demand—and I can join your live diligence calls as your Fractional Executive Producer.
+            I am a <strong class="text-white">Game Producer &amp; Operational Advisor</strong>, not a commission-based sales broker. While I don’t take a percentage of your publishing deal, I prepare the exact production roadmaps, P&amp;L models, and risk registers that publishers’ internal producers demand, and I can join your live diligence calls as your Fractional Executive Producer.
           </p>
         </details>
 
@@ -1374,7 +1362,7 @@
       });
     }
 
-    // 3. Campfire Rising Embers Particle System (ALWAYS ON by default!)
+    // 3. Campfire Rising Embers Particle System
     const canvas = document.getElementById('emberCanvas');
     let animationsPaused = false;
 
@@ -1445,7 +1433,7 @@
       });
     }
 
-    // 5. WebMCP Declarative Tool Registration (for Agentic Browsers)
+    // 5. WebMCP Declarative Tool Registration
     if ('modelContext' in navigator && typeof navigator.modelContext?.registerTool === 'function') {
       navigator.modelContext.registerTool({
         name: 'book_pitch_readiness_call',
