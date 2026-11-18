@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jorge Aranda López, PMP® | Consulting Game Producer & Pitch Strategist</title>
-  <meta name="description" content="Ex-Cloud Imperium Games (Star Citizen, Squadron 42) & PMP® Certified Consulting Producer. Helping indie and AA studios build publisher-ready $1M–$10M pitch packages." />
+  <title>Jorge Aranda López, PMP® | Game Production & Pitch Consultant</title>
+  <meta name="description" content="Former Star Citizen & Squadron 42 Producer (PMP®). Helping indie and AA studios turn raw prototypes into realistic, publisher-ready $1M–$10M production plans." />
 
-  <!-- Google Fonts: Cinzel (Atmospheric Game Titles), Plus Jakarta Sans (Clean UI), JetBrains Mono (Metrics) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
         extend: {
           colors: {
             night: '#0a0b10',
-            campfire: '#12141d',
+            campfire: '#121520',
             card: '#161924',
             ember: '#f59e0b',
             flame: '#ea580c',
@@ -42,389 +42,609 @@
       overflow-x: hidden;
     }
 
-    /* Resplandor cálido de hoguera en el fondo */
-    .fire-glow-bg {
-      background: radial-gradient(circle at 50% 35%, rgba(234, 88, 12, 0.16) 0%, rgba(245, 158, 11, 0.06) 35%, rgba(10, 11, 16, 0) 70%);
+    /* Escenario de la hoguera */
+    .stage-glow {
+      background:
+        radial-gradient(circle at 50% 76%, rgba(234, 88, 12, 0.26) 0%, rgba(245, 158, 11, 0.09) 34%, rgba(10, 11, 16, 0.95) 70%),
+        linear-gradient(180deg, #0b0d14 0%, #121521 72%, #0a0b10 100%);
     }
 
-    /* Tarjetas con efecto de calor al pasar el ratón (Hover) */
+    /* Tarjetas generales */
     .cozy-card {
-      background: linear-gradient(180deg, rgba(22, 25, 36, 0.85) 0%, rgba(16, 18, 27, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      background: linear-gradient(180deg, rgba(22, 25, 36, 0.9) 0%, rgba(14, 16, 24, 0.98) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .cozy-card:hover {
       border-color: rgba(245, 158, 11, 0.45);
-      box-shadow: 0 12px 35px -10px rgba(234, 88, 12, 0.22), 0 0 20px -5px rgba(245, 158, 11, 0.12) inset;
-      transform: translateY(-4px);
+      box-shadow: 0 14px 35px -10px rgba(234, 88, 12, 0.2), 0 0 20px -5px rgba(245, 158, 11, 0.1) inset;
     }
 
-    /* Animación de la llama de la hoguera */
+    /* Paneles verticales sobre el tronco izquierdo */
+    .log-banner {
+      background: linear-gradient(180deg, rgba(24, 27, 40, 0.94) 0%, rgba(15, 17, 26, 0.98) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.75), 0 -4px 25px -8px rgba(234, 88, 12, 0.22) inset;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .log-banner:hover {
+      border-color: #fde68a;
+      transform: translateY(-6px);
+      box-shadow: 0 22px 45px -10px rgba(234, 88, 12, 0.38), 0 0 25px -4px rgba(245, 158, 11, 0.28) inset;
+    }
+
+    /* Animación suave de la llama */
     @keyframes flicker {
       0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-      25% { transform: scale(1.04, 0.97) rotate(1deg); opacity: 1; }
-      50% { transform: scale(0.98, 1.05) rotate(-0.5deg); opacity: 0.9; }
+      25% { transform: scale(1.05, 0.96) rotate(1deg); opacity: 1; }
+      50% { transform: scale(0.97, 1.06) rotate(-0.5deg); opacity: 0.9; }
       75% { transform: scale(1.03, 0.99) rotate(1.5deg); opacity: 0.98; }
     }
     .flame-anim {
-      animation: flicker 3.2s infinite ease-in-out;
+      animation: flicker 3s infinite ease-in-out;
       transform-origin: bottom center;
     }
     .flame-anim-slow {
-      animation: flicker 4.5s infinite ease-in-out reverse;
+      animation: flicker 4.2s infinite ease-in-out reverse;
       transform-origin: bottom center;
     }
 
-    /* Pulso de los nodos interactivos (Hotspots) alrededor de la hoguera */
+    /* Pulso de los botones navegadores alrededor del fuego */
     @keyframes pulse-ring {
-      0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
-      100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
     }
-    .hotspot-dot {
-      animation: pulse-ring 2.5s infinite;
+    .nav-spark {
+      animation: pulse-ring 2.6s infinite;
     }
 
-    /* Mostrar tarjeta flotante al hacer hover en los nodos de la hoguera */
-    .hotspot-group .hotspot-card {
+    /* Tooltip en hover para las chispas de navegación */
+    .spark-group .spark-tooltip {
       opacity: 0;
       visibility: hidden;
-      transform: translateY(8px) scale(0.96);
-      transition: all 0.25s ease-out;
+      transform: translateY(6px);
+      transition: all 0.2s ease-out;
     }
-    .hotspot-group:hover .hotspot-card,
-    .hotspot-group:focus-within .hotspot-card {
+    .spark-group:hover .spark-tooltip,
+    .spark-group:focus-within .spark-tooltip {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
+    }
+
+    /* Divisor claro entre capítulos para que no se vea apelotonado al hacer scroll */
+    .section-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    .section-divider::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.35) 50%, transparent 100%);
     }
   </style>
 </head>
 <body class="font-sans antialiased selection:bg-ember selection:text-night">
 
-  <!-- ================= NAVBAR ================= -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-night/80 border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <span class="w-3 h-3 rounded-full bg-ember shadow-[0_0_12px_#f59e0b] group-hover:scale-125 transition-transform"></span>
-        <div>
-          <span class="font-display font-bold tracking-wider text-white text-sm sm:text-base block leading-none">JORGE ARANDA LÓPEZ</span>
-          <span class="font-mono text-[11px] text-ember/90 tracking-widest uppercase">Consulting Producer • PMP®</span>
-        </div>
-      </a>
+  <!-- ================= ESCENARIO DE ENTRADA: THE CAMPFIRE NAVIGATOR ================= -->
+  <section class="relative min-h-screen pt-5 pb-10 px-4 sm:px-8 flex flex-col justify-between overflow-hidden">
+    
+    <div class="relative max-w-6xl w-full mx-auto flex-1 rounded-3xl stage-glow border border-white/10 shadow-[0_0_70px_rgba(0,0,0,0.85)] overflow-hidden flex flex-col justify-between p-6 sm:p-10">
 
-      <nav class="hidden md:flex items-center gap-8 text-sm text-gray-300 font-medium">
-        <a href="#problem" class="hover:text-ember transition-colors">Why Pitches Fail</a>
-        <a href="#services" class="hover:text-ember transition-colors">Services</a>
-        <a href="#case-studies" class="hover:text-ember transition-colors">Case Study</a>
-        <a href="#about" class="hover:text-ember transition-colors">About</a>
-        <a href="#faq" class="hover:text-ember transition-colors">FAQ</a>
-      </nav>
+      <!-- Brasas flotantes -->
+      <canvas id="emberCanvas" class="absolute inset-0 pointer-events-none z-0 opacity-75"></canvas>
 
-      <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
-         class="px-4 py-2.5 rounded-lg bg-gradient-to-r from-ember to-flame text-night font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_28px_rgba(245,158,11,0.55)] hover:scale-[1.02] transition-all">
-        Book a Free Call
-      </a>
-    </div>
-  </header>
-
-  <!-- ================= PASO 1: HERO + INTERACTIVE COZY CAMPFIRE ================= -->
-  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 fire-glow-bg overflow-hidden">
-    <!-- Canvas de brasas flotantes (Embers) -->
-    <canvas id="emberCanvas" class="absolute inset-0 pointer-events-none z-0 opacity-70"></canvas>
-
-    <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <div class="grid lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Columna Izquierda: Propuesta de Valor Directa -->
-        <div class="lg:col-span-7 space-y-6 text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ember/10 border border-ember/30 text-spark font-mono text-xs">
-            <span>🔥 PMP® CERTIFIED PRODUCER</span>
-            <span class="text-white/30">•</span>
-            <span>EX-CLOUD IMPERIUM GAMES</span>
+      <!-- TOP BAR: Avatar + Nombre a la izquierda + Menú directo -->
+      <header class="relative z-20 flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+        <a href="#" class="flex items-center gap-4 group">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-ember/30 to-flame/20 border-2 border-ember flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.35)] group-hover:scale-105 transition-transform">
+            <span class="font-display font-bold text-spark text-lg">JAL</span>
           </div>
-
-          <h1 class="font-display text-3xl sm:text-5xl lg:text-[52px] font-bold text-white leading-[1.12] tracking-tight">
-            Publishers Don’t Just Fund Great Prototypes. <span class="text-transparent bg-clip-text bg-gradient-to-r from-spark via-ember to-flame">They Fund Studios That Can Deliver.</span>
-          </h1>
-
-          <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-            Pull up a seat by the fire. Before you walk into a high-stakes publisher meeting, I help ambitious indie and AA studios turn raw prototypes into <strong class="text-white">ready-to-fund pitch packages</strong>, with bulletproof $1M–$10M budgets, de-risked production roadmaps, and fractional executive production.
-          </p>
-
-          <div class="flex flex-col sm:flex-row gap-4 pt-2">
-            <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
-               class="px-7 py-4 rounded-xl bg-gradient-to-r from-ember to-flame text-night font-bold text-center text-base shadow-[0_0_25px_rgba(234,88,12,0.4)] hover:shadow-[0_0_35px_rgba(245,158,11,0.65)] transition-all">
-              Book a Free 20-Min Call
-            </a>
-            <a href="#services"
-               class="px-7 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-center text-base transition-all">
-              Explore Services & Pricing ↓
-            </a>
+          <div>
+            <span class="font-display font-bold text-lg sm:text-2xl text-white tracking-wide block leading-tight">
+              Jorge Aranda López
+            </span>
+            <span class="font-mono text-[11px] sm:text-xs text-ember tracking-widest uppercase block">
+              Game Production & Pitch Consultant • PMP® • Ex-CIG
+            </span>
           </div>
+        </a>
 
-          <p class="text-xs font-mono text-gray-400 pt-1">
-            💡 <span class="text-spark">Interactive Checkpoint:</span> Hover over the glowing sparks around the campfire to inspect how we de-risk your project.
-          </p>
-        </div>
+        <nav class="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium">
+          <a href="#about" class="text-gray-300 hover:text-spark transition-colors">1. About Me</a>
+          <a href="#problem" class="text-gray-300 hover:text-spark transition-colors">2. Common Red Flags</a>
+          <a href="#services" class="text-gray-300 hover:text-spark transition-colors">3. Services & Prices</a>
+          <a href="#case-studies" class="text-gray-300 hover:text-spark transition-colors">4. $5M Case Study</a>
+          <a href="articles.html" class="px-3.5 py-2 rounded-lg bg-white/5 hover:bg-ember/20 border border-ember/40 text-spark font-mono text-xs transition-all flex items-center gap-1.5">
+            <span>📜</span> Articles
+          </a>
+          <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
+             class="px-4 py-2 rounded-lg bg-gradient-to-r from-ember to-flame text-night font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(245,158,11,0.35)] hover:brightness-110 transition-all">
+            Free 20-Min Call
+          </a>
+        </nav>
+      </header>
 
-        <!-- Columna Derecha: ESCENA DE LA HOGUERA INTERACTIVA (Con Hovers para las 4 preguntas) -->
-        <!-- [GUÍA] Cuando tengas tu render 3D (.mp4/.webm o Three.js), reemplaza el SVG central dentro de #campfire-scene -->
-        <div class="lg:col-span-5 relative flex items-center justify-center min-h-[380px] sm:min-h-[430px]" id="campfire-scene">
+      <!-- ESCENA CENTRAL: LA HOGUERA COMO NAVEGADOR (HOVER + CLIC DIRECTO A CADA SECCIÓN) -->
+      <div class="relative z-10 my-auto py-8 grid lg:grid-cols-12 gap-8 items-end">
+
+        <!-- ZONA IZQUIERDA (5 cols): 2 PANELES VERTICALES CLICABLES + TRONCO IZQUIERDO -->
+        <div class="lg:col-span-5 flex flex-col items-center">
           
-          <!-- Resplandor ambiental detrás del fuego -->
-          <div class="absolute w-72 h-72 rounded-full bg-flame/20 blur-3xl pointer-events-none"></div>
-          <div class="absolute w-44 h-44 rounded-full bg-ember/25 blur-2xl pointer-events-none"></div>
-
-          <!-- Contenedor circular del Checkpoint -->
-          <div class="relative w-full max-w-[380px] aspect-square rounded-3xl cozy-card p-6 flex flex-col items-center justify-center border border-ember/25 shadow-2xl">
+          <div class="grid grid-cols-2 gap-4 sm:gap-5 w-full max-w-md mb-3">
             
-            <div class="absolute top-4 left-5 right-5 flex justify-between items-center text-[11px] font-mono text-gray-400">
-              <span class="text-spark flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-ember animate-ping"></span> SAFE HAVEN: PITCH CAMP</span>
-              <span>HOVER SPARKS</span>
-            </div>
+            <!-- PANEL 1: ARTÍCULOS (Abre articles.html) -->
+            <a href="articles.html" class="block group focus:outline-none">
+              <div class="log-banner rounded-2xl p-5 h-64 sm:h-72 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-ember/15 text-spark border border-ember/30">
+                    📜 Field Notes
+                  </span>
+                  <h2 class="font-display font-bold text-lg sm:text-xl text-white mt-3 group-hover:text-spark transition-colors">
+                    Articles & Breakdowns
+                  </h2>
+                  <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                    Practical notes on scoping games, calculating real Steam break-even numbers, and surviving publisher due diligence.
+                  </p>
+                </div>
 
-            <!-- ================= HOTSPOT 1: WHO AM I? (Top Left) ================= -->
-            <div class="hotspot-group absolute top-16 left-6 z-30" tabindex="0">
-              <button class="hotspot-dot w-9 h-9 rounded-full bg-night border-2 border-ember text-spark flex items-center justify-center font-mono text-xs font-bold cursor-pointer">
-                01
-              </button>
-              <span class="block text-[10px] font-mono text-spark mt-1 bg-night/80 px-1.5 py-0.5 rounded border border-white/10">1. Pedigree</span>
-              <!-- Tooltip Card -->
-              <div class="hotspot-card absolute left-0 top-14 w-64 p-4 rounded-xl bg-night/95 border border-ember/50 shadow-2xl z-40 pointer-events-none">
-                <p class="font-mono text-[10px] text-ember uppercase">01 • Who Has Your Back?</p>
-                <p class="text-xs font-bold text-white mt-0.5">Ex-CIG Producer & PMP®</p>
-                <p class="text-xs text-gray-300 mt-1 leading-relaxed">
-                  Former Producer on <em>Star Citizen</em> & <em>Squadron 42</em>. I bring AAA pipeline control without stifling your indie agility.
-                </p>
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-ember group-hover:text-spark">
+                  <span>Read Articles</span>
+                  <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
               </div>
-            </div>
+            </a>
 
-            <!-- ================= HOTSPOT 2: WHAT PROBLEM? (Top Right) ================= -->
-            <div class="hotspot-group absolute top-16 right-6 z-30 text-right" tabindex="0">
-              <button class="hotspot-dot w-9 h-9 rounded-full bg-night border-2 border-ember text-spark flex items-center justify-center font-mono text-xs font-bold cursor-pointer ml-auto">
-                02
-              </button>
-              <span class="block text-[10px] font-mono text-spark mt-1 bg-night/80 px-1.5 py-0.5 rounded border border-white/10">2. De-Risking</span>
-              <!-- Tooltip Card -->
-              <div class="hotspot-card absolute right-0 top-14 w-64 p-4 rounded-xl bg-night/95 border border-ember/50 shadow-2xl z-40 text-left pointer-events-none">
-                <p class="font-mono text-[10px] text-ember uppercase">02 • What We Fix</p>
-                <p class="text-xs font-bold text-white mt-0.5">Publisher Due Diligence</p>
-                <p class="text-xs text-gray-300 mt-1 leading-relaxed">
-                  We turn rough tech demos into 20-page Diligence Pre-Reads, realistic 3D/AI pipelines, and bulletproof P&L models.
-                </p>
+            <!-- PANEL 2: CONSULTORÍA Y PRECIOS (Baja directo a #services) -->
+            <a href="#services" class="block group focus:outline-none">
+              <div class="log-banner rounded-2xl p-5 h-64 sm:h-72 flex flex-col justify-between relative overflow-hidden border-ember/50">
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-flame/20 text-spark border border-ember/40">
+                    🔥 Work Together
+                  </span>
+                  <h2 class="font-display font-bold text-lg sm:text-xl text-white mt-3 group-hover:text-spark transition-colors">
+                    Services & Pitch Audits
+                  </h2>
+                  <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                    Start with a free 20-min call or a €250 red-flag review, up to full $1M–$10M pitch documentation & ongoing production support.
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-ember group-hover:text-spark">
+                  <span>Jump to Prices</span>
+                  <span class="group-hover:translate-y-0.5 transition-transform">↓</span>
+                </div>
               </div>
-            </div>
+            </a>
 
-            <!-- ================= HOTSPOT 3: PROVEN RESULTS? (Bottom Left) ================= -->
-            <div class="hotspot-group absolute bottom-12 left-6 z-30" tabindex="0">
-              <button class="hotspot-dot w-9 h-9 rounded-full bg-night border-2 border-ember text-spark flex items-center justify-center font-mono text-xs font-bold cursor-pointer">
-                03
-              </button>
-              <span class="block text-[10px] font-mono text-spark mt-1 bg-night/80 px-1.5 py-0.5 rounded border border-white/10">3. $5M Case</span>
-              <!-- Tooltip Card -->
-              <div class="hotspot-card absolute left-0 bottom-16 w-64 p-4 rounded-xl bg-night/95 border border-ember/50 shadow-2xl z-40 pointer-events-none">
-                <p class="font-mono text-[10px] text-ember uppercase">03 • Proven ROI</p>
-                <p class="text-xs font-bold text-white mt-0.5">+$500K Profit Unlocked</p>
-                <p class="text-xs text-gray-300 mt-1 leading-relaxed">
-                  Structured a $5M Grand Strategy pitch, increasing projected studio net profit by +76% and lowering break-even by 20%.
-                </p>
-              </div>
-            </div>
-
-            <!-- ================= HOTSPOT 4: HOW WE WORK? (Bottom Right) ================= -->
-            <div class="hotspot-group absolute bottom-12 right-6 z-30 text-right" tabindex="0">
-              <button class="hotspot-dot w-9 h-9 rounded-full bg-night border-2 border-ember text-spark flex items-center justify-center font-mono text-xs font-bold cursor-pointer ml-auto">
-                04
-              </button>
-              <span class="block text-[10px] font-mono text-spark mt-1 bg-night/80 px-1.5 py-0.5 rounded border border-white/10">4. Co-Signer</span>
-              <!-- Tooltip Card -->
-              <div class="hotspot-card absolute right-0 bottom-16 w-64 p-4 rounded-xl bg-night/95 border border-ember/50 shadow-2xl z-40 text-left pointer-events-none">
-                <p class="font-mono text-[10px] text-ember uppercase">04 • Flexible Engagement</p>
-                <p class="text-xs font-bold text-white mt-0.5">Review, Audit, or Retainer</p>
-                <p class="text-xs text-gray-300 mt-1 leading-relaxed">
-                  From a €250 red-flag review to joining your pitch deck as your Fractional Executive Producer.
-                </p>
-              </div>
-            </div>
-
-            <!-- ILUSTRACIÓN ANIMADA DE LA HOGUERA (Placeholder Cozy antes de tu Render 3D) -->
-            <div class="relative w-44 h-44 flex items-center justify-center mt-4">
-              <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_25px_rgba(245,158,11,0.5)]">
-                <!-- Suelo / Piedras del campamento -->
-                <ellipse cx="100" cy="168" rx="68" ry="14" fill="#0a0b10" opacity="0.8"/>
-                <!-- Troncos cruzados -->
-                <rect x="45" y="142" width="110" height="16" rx="8" transform="rotate(14 100 150)" fill="#451a03" stroke="#78350f" stroke-width="2"/>
-                <rect x="45" y="142" width="110" height="16" rx="8" transform="rotate(-14 100 150)" fill="#5c2406" stroke="#92400e" stroke-width="2"/>
-                <!-- Piedras alrededor -->
-                <circle cx="52" cy="162" r="9" fill="#1f2937"/>
-                <circle cx="75" cy="168" r="11" fill="#374151"/>
-                <circle cx="102" cy="170" r="10" fill="#1f2937"/>
-                <circle cx="128" cy="167" r="11" fill="#374151"/>
-                <circle cx="150" cy="161" r="8" fill="#1f2937"/>
-                <!-- Llama Exterior Naranja -->
-                <path class="flame-anim" d="M100 32 C128 68, 148 102, 134 134 C124 152, 76 152, 66 134 C52 102, 72 68, 100 32 Z" fill="url(#outerFlame)"/>
-                <!-- Llama Media Ámbar -->
-                <path class="flame-anim-slow" d="M100 55 C118 82, 132 105, 122 132 C114 146, 86 146, 78 132 C68 105, 82 82, 100 55 Z" fill="url(#midFlame)"/>
-                <!-- Núcleo Brillante -->
-                <path class="flame-anim" d="M100 84 C110 100, 116 116, 110 132 C105 140, 95 140, 90 132 C84 116, 90 100, 100 84 Z" fill="#fef08a"/>
-                <!-- Brasas flotantes fijas -->
-                <circle cx="82" cy="52" r="2.5" fill="#fde68a" class="animate-ping"/>
-                <circle cx="122" cy="66" r="2" fill="#f59e0b" class="animate-pulse"/>
-                <defs>
-                  <linearGradient id="outerFlame" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#f59e0b"/>
-                    <stop offset="65%" stop-color="#ea580c"/>
-                    <stop offset="100%" stop-color="#9a3412"/>
-                  </linearGradient>
-                  <linearGradient id="midFlame" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#fde68a"/>
-                    <stop offset="100%" stop-color="#f59e0b"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-
-            <div class="absolute bottom-3 text-center">
-              <span class="font-mono text-[11px] text-gray-400">Rest, audit your scope & prepare for the pitch.</span>
-            </div>
           </div>
+
+          <!-- TRONCO IZQUIERDO -->
+          <div class="w-full max-w-md px-2">
+            <svg viewBox="0 0 420 70" class="w-full h-auto drop-shadow-[0_12px_18px_rgba(0,0,0,0.85)]">
+              <defs>
+                <linearGradient id="logBarkLeft" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#78350f"/>
+                  <stop offset="45%" stop-color="#451a03"/>
+                  <stop offset="100%" stop-color="#270e02"/>
+                </linearGradient>
+                <linearGradient id="logRimGlow" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#92400e" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.85"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="210" cy="60" rx="195" ry="9" fill="#050608" opacity="0.85"/>
+              <path d="M 35 15 L 385 18 C 402 18, 405 54, 385 55 L 35 52 Z" fill="url(#logBarkLeft)" stroke="url(#logRimGlow)" stroke-width="2"/>
+              <path d="M 85 26 Q 140 22, 195 27 M 230 38 Q 295 34, 355 40 M 110 44 Q 175 47, 240 43" stroke="#290f02" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="35" cy="33.5" rx="16" ry="18.5" fill="#b45309" stroke="#451a03" stroke-width="3"/>
+              <ellipse cx="35" cy="33.5" rx="10" ry="12" fill="none" stroke="#78350f" stroke-width="1.5"/>
+              <ellipse cx="35" cy="33.5" rx="4.5" ry="5.5" fill="none" stroke="#78350f" stroke-width="1.5"/>
+            </svg>
+          </div>
+
+        </div>
+
+        <!-- ZONA CENTRAL (3 cols): LA HOGUERA CON CHISPAS CLICABLES (HOVER + JUMP TO SECTION) -->
+        <div class="lg:col-span-3 flex flex-col items-center justify-end relative py-4">
+          <div class="absolute bottom-6 w-56 h-56 rounded-full bg-flame/25 blur-3xl pointer-events-none"></div>
+          <div class="absolute bottom-10 w-36 h-36 rounded-full bg-ember/30 blur-2xl pointer-events-none"></div>
+
+          <!-- 3 Chispas Navegadoras alrededor del fuego (Hover para vista previa + Clic para ir a la sección) -->
+          <div class="relative w-56 h-56 flex items-center justify-center">
+
+            <!-- Chispa 1: Ir a Red Flags (#problem) -->
+            <div class="spark-group absolute -top-2 left-2 z-30">
+              <a href="#problem" class="nav-spark px-2.5 py-1 rounded-full bg-night/90 border border-ember text-[11px] font-mono text-spark hover:bg-ember hover:text-night transition-all flex items-center gap-1">
+                <span>⚡</span> Red Flags ↓
+              </a>
+              <div class="spark-tooltip absolute left-0 bottom-9 w-56 p-3 rounded-xl bg-night/95 border border-ember/50 shadow-2xl text-xs text-gray-200 pointer-events-none">
+                <strong class="text-spark block">Click to jump:</strong> See the 3 main operational issues that make publishers reject good prototypes.
+              </div>
+            </div>
+
+            <!-- Chispa 2: Ir a Case Study (#case-studies) -->
+            <div class="spark-group absolute -top-2 right-0 z-30">
+              <a href="#case-studies" class="nav-spark px-2.5 py-1 rounded-full bg-night/90 border border-ember text-[11px] font-mono text-spark hover:bg-ember hover:text-night transition-all flex items-center gap-1">
+                <span>📊</span> $5M Case ↓
+              </a>
+              <div class="spark-tooltip absolute right-0 bottom-9 w-56 p-3 rounded-xl bg-night/95 border border-ember/50 shadow-2xl text-xs text-gray-200 pointer-events-none">
+                <strong class="text-spark block">Click to jump:</strong> How we fixed a $500K tax error and structured a $5M UE5 strategy pitch.
+              </div>
+            </div>
+
+            <!-- SVG de la Hoguera -->
+            <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-[0_0_30px_rgba(245,158,11,0.55)] mt-4">
+              <ellipse cx="100" cy="172" rx="74" ry="15" fill="#050608" opacity="0.9"/>
+              <rect x="42" y="144" width="116" height="17" rx="8" transform="rotate(15 100 152)" fill="#451a03" stroke="#92400e" stroke-width="2"/>
+              <rect x="42" y="144" width="116" height="17" rx="8" transform="rotate(-15 100 152)" fill="#5c2406" stroke="#b45309" stroke-width="2"/>
+              <circle cx="48" cy="165" r="10" fill="#1f2937"/>
+              <circle cx="72" cy="171" r="12" fill="#374151"/>
+              <circle cx="100" cy="173" r="11" fill="#1f2937"/>
+              <circle cx="128" cy="170" r="12" fill="#374151"/>
+              <circle cx="152" cy="164" r="9" fill="#1f2937"/>
+              <path class="flame-anim" d="M100 26 C132 66, 152 104, 136 138 C126 156, 74 156, 64 138 C48 104, 68 66, 100 26 Z" fill="url(#outerFlame)"/>
+              <path class="flame-anim-slow" d="M100 52 C120 82, 134 106, 123 134 C114 148, 86 148, 77 134 C66 106, 80 82, 100 52 Z" fill="url(#midFlame)"/>
+              <path class="flame-anim" d="M100 84 C111 100, 117 118, 110 134 C105 142, 95 142, 90 134 C83 118, 89 100, 100 84 Z" fill="#fef08a"/>
+              <defs>
+                <linearGradient id="outerFlame" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f59e0b"/>
+                  <stop offset="65%" stop-color="#ea580c"/>
+                  <stop offset="100%" stop-color="#9a3412"/>
+                </linearGradient>
+                <linearGradient id="midFlame" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fde68a"/>
+                  <stop offset="100%" stop-color="#f59e0b"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <span class="font-mono text-[11px] text-gray-400 text-center">
+            Click any panel or spark to navigate ↓
+          </span>
+        </div>
+
+        <!-- ZONA DERECHA (4 cols): BOCADILLO DIRECTO Y HONESTO + CONSULTOR EN EL TRONCO -->
+        <div class="lg:col-span-4 flex flex-col items-center">
+          
+          <!-- Bocadillo sin clichés de LinkedIn, directo y clicable hacia #about -->
+          <a href="#about" class="block w-full max-w-sm group focus:outline-none">
+            <div class="log-banner rounded-2xl p-5 w-full relative mb-3 border-ember/45">
+              <div class="flex items-center justify-between text-[11px] font-mono text-ember mb-1.5">
+                <span>👋 HI, I'M JORGE</span>
+                <span class="text-spark">EX-STAR CITIZEN PRODUCER</span>
+              </div>
+              <h1 class="text-white font-bold text-base sm:text-lg leading-snug group-hover:text-spark transition-colors">
+                I help indie & AA studios turn raw prototypes into realistic, funded production plans.
+              </h1>
+              <p class="text-gray-300 text-xs mt-2 leading-relaxed">
+                Before you ask a publisher for $1M–$10M, we fix the scope traps, broken budget math, and schedule gaps that stall deals during due diligence.
+              </p>
+              <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-spark">
+                <span>1. Read My Background & Story</span>
+                <span class="group-hover:translate-y-0.5 transition-transform">↓</span>
+              </div>
+              <div class="w-4 h-4 bg-[#11131d] border-r border-b border-ember/45 rotate-45 absolute -bottom-2 right-16"></div>
+            </div>
+          </a>
+
+          <!-- Ilustración del consultor en el tronco derecho -->
+          <div class="w-full max-w-sm">
+            <svg viewBox="0 0 340 165" class="w-full h-auto drop-shadow-[0_14px_20px_rgba(0,0,0,0.85)]">
+              <ellipse cx="185" cy="148" rx="135" ry="10" fill="#050608" opacity="0.85"/>
+              <path d="M 65 102 L 300 108 C 315 108, 315 144, 300 145 L 65 138 Z" fill="url(#logBarkLeft)" stroke="#f59e0b" stroke-width="1.5"/>
+              <ellipse cx="300" cy="126.5" rx="14" ry="18.5" fill="#b45309" stroke="#451a03" stroke-width="3"/>
+              <ellipse cx="300" cy="126.5" rx="8" ry="11" fill="none" stroke="#78350f" stroke-width="1.5"/>
+              <path d="M 175 102 L 152 142 L 138 142" stroke="#1e293b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M 192 104 L 176 144 L 164 144" stroke="#0f172a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M 168 48 C 158 65, 162 92, 170 104 L 204 104 C 210 88, 208 62, 196 48 Z" fill="#1f2937" stroke="#f59e0b" stroke-width="2"/>
+              <circle cx="182" cy="30" r="14" fill="#334155" stroke="#fde68a" stroke-width="2"/>
+              <path d="M 198 58 Q 212 80, 190 95" stroke="#334155" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <path d="M 168 58 Q 130 66, 98 56" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <circle cx="94" cy="55" r="5" fill="#fde68a"/>
+            </svg>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- Barra de 3 Credenciales Clave debajo del Hero -->
-      <div class="grid md:grid-cols-3 gap-6 mt-16 pt-10 border-t border-white/10">
-        <div class="cozy-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-ember uppercase tracking-wider mb-1">01 / AAA Production Pedigree</div>
-          <h3 class="text-white font-bold text-lg">Ex-Cloud Imperium Games</h3>
-          <p class="text-gray-400 text-sm mt-1">Former Producer on <em>Star Citizen</em> & <em>Squadron 42</em>. Navigating some of the industry’s most complex engineering and asset pipelines.</p>
-        </div>
-        <div class="cozy-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-ember uppercase tracking-wider mb-1">02 / Financial & Market Rigor</div>
-          <h3 class="text-white font-bold text-lg">$5M+ Pitch Architecture</h3>
-          <p class="text-gray-400 text-sm mt-1">Structuring 20-page publisher pre-reads, 36-month P&L models, and Boxleiter/SteamDB market viability studies for tier-1 publishers.</p>
-        </div>
-        <div class="cozy-card p-6 rounded-2xl">
-          <div class="font-mono text-xs text-ember uppercase tracking-wider mb-1">03 / Operational Assurance</div>
-          <h3 class="text-white font-bold text-lg">PMP® Certified Governance</h3>
-          <p class="text-gray-400 text-sm mt-1">Giving publishers and investors the operational confidence that your team will hit Vertical Slice, Alpha, and Gold on budget.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= PASO 2A: EL PROBLEMA (WHY PUBLISHERS PASS) ================= -->
-  <section id="problem" class="py-24 bg-campfire/60 border-y border-white/5">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-3xl">
-        <span class="font-mono text-xs text-ember uppercase tracking-widest">The Funding Bottleneck</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
-          Why Tier-1 Publishers Pass on Great Game Prototypes
-        </h2>
-        <p class="text-gray-300 mt-4 text-base sm:text-lg">
-          Having a playable Unreal or Unity build and organic YouTube traction gets you a first meeting. Passing publisher due diligence takes operational maturity.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 mt-12">
-        <div class="cozy-card p-8 rounded-2xl relative overflow-hidden">
-          <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #1</span>
-          <h3 class="text-xl font-bold text-white mt-4">Unproven Scope & Asset Math</h3>
-          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
-            You know what game you want to build, but you can’t prove how 12 developers will deliver 300+ unique 3D assets, complex AI, and 60 FPS optimization in 30 months without burning out.
-          </p>
-        </div>
-
-        <div class="cozy-card p-8 rounded-2xl relative overflow-hidden">
-          <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #2</span>
-          <h3 class="text-xl font-bold text-white mt-4">Broken Financial & Unit Economics</h3>
-          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
-            Your budget is a rough guess. Publishers immediately spot missing tax models, unrealistic recoup timelines, and sales projections that aren't backed by SteamDB or Boxleiter market comps.
-          </p>
-        </div>
-
-        <div class="cozy-card p-8 rounded-2xl relative overflow-hidden">
-          <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #3</span>
-          <h3 class="text-xl font-bold text-white mt-4">No Senior Production Governance</h3>
-          <p class="text-gray-400 text-sm mt-3 leading-relaxed">
-            Publishers rarely hand $1M–$5M to talented engineers and creatives who have never managed a full production cycle. They need an experienced Producer in the room protecting their investment.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= PASO 2B: SERVICIOS Y PRECIOS (#services) ================= -->
-  <section id="services" class="py-24 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto">
-        <span class="font-mono text-xs text-ember uppercase tracking-widest">Services & Engagement Models</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
-          Structured Production Advisory for Ambitious Studios
-        </h2>
-        <p class="text-gray-300 mt-4">
-          Whether you are 6 weeks away from pitching publishers or scaling your team post-funding, choose the level of support your studio needs.
-        </p>
-      </div>
-
-      <!-- NOTA DE PRECIOS + OFERTA DE ENTRADA (€250) -->
-      <p class="text-center text-xs font-mono text-gray-500 mt-4">All prices in EUR, excl. VAT.</p>
-
-      <div class="cozy-card rounded-2xl p-6 sm:p-8 mt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-ember/30">
-        <div class="max-w-2xl">
-          <span class="font-mono text-xs text-spark uppercase">Start Here • Single Session</span>
-          <h3 class="text-xl font-bold text-white mt-1">Budget & Scope Red-Flag Review</h3>
-          <p class="text-sm text-gray-300 mt-2">
-            Send me your pitch deck and budget sheet. I review both in advance, then we spend 75 minutes on the issues most likely to stall a publisher's due diligence: scope, headcount, recoup math, and unit economics. You get a one-page written action list within 48 hours. The fee is fully credited toward a Readiness Audit booked within 30 days.
-          </p>
-        </div>
-        <div class="md:text-right shrink-0">
-          <span class="text-3xl font-bold text-white font-mono">€250</span>
-          <span class="text-xs text-gray-400 block mt-1">75 min + written notes</span>
-          <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="review" target="_blank" rel="noopener"
-             class="inline-block mt-4 px-6 py-3 rounded-xl bg-white/10 hover:bg-ember hover:text-night text-white font-bold text-sm transition-all">
-            Book a Review →
+      <!-- BARRA INFERIOR DEL ESCENARIO -->
+      <div class="relative z-20 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+          <a href="#services"
+             class="px-6 py-3 rounded-xl bg-white/10 hover:bg-ember hover:text-night border border-ember/40 text-white font-mono font-bold text-xs sm:text-sm tracking-wider uppercase transition-all text-center w-full sm:w-auto">
+            ↓ See Services & Pricing
+          </a>
+          <a href="#about"
+             class="px-5 py-3 rounded-xl bg-night/80 hover:bg-white/10 border border-white/15 text-spark font-mono text-xs sm:text-sm transition-all text-center w-full sm:w-auto">
+            Read About My Background ↓
           </a>
         </div>
+
+        <div class="font-mono text-xs text-gray-400 text-center sm:text-right">
+          <span>PMP® Certified Producer</span>
+          <span class="mx-2 text-ember">•</span>
+          <span class="text-gray-300">Ex-Cloud Imperium Games (Star Citizen / Squadron 42)</span>
+        </div>
       </div>
 
-      <!-- Grid de Servicios (Escalable: duplica cualquier bloque <div class="cozy-card..."> para añadir otro) -->
+    </div>
+  </section>
+
+  <!-- DIVISOR CLARO DE CAPÍTULO 01 -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="section-divider">
+      <span class="relative z-10 px-4 py-1 rounded-full bg-night border border-ember/40 font-mono text-xs text-ember uppercase tracking-widest">
+        Chapter 01 • Who You Are Working With
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= SECCIÓN 1: ABOUT ME (SUBIDA ARRIBA DEL TODO COMO PIDIÓ EL FEEDBACK) ================= -->
+  <section id="about" class="py-16 sm:py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="cozy-card rounded-3xl p-8 sm:p-12 grid md:grid-cols-12 gap-10 items-center border-ember/25">
+        
+        <div class="md:col-span-4 text-center md:text-left">
+          <div class="w-36 h-36 mx-auto md:mx-0 rounded-2xl bg-gradient-to-br from-ember/30 to-flame/10 border border-ember/40 flex flex-col items-center justify-center p-4 shadow-xl">
+            <span class="font-display text-4xl font-bold text-spark">JAL</span>
+            <span class="font-mono text-[10px] text-ember mt-1 uppercase tracking-widest">PMP® • EX-CIG</span>
+          </div>
+          <div class="mt-6 space-y-2 font-mono text-xs text-gray-300">
+            <div class="py-2 px-3 rounded-lg bg-white/5 border border-white/10">✓ PMP® Certified Game Producer</div>
+            <div class="py-2 px-3 rounded-lg bg-white/5 border border-white/10">✓ Ex-Cloud Imperium Games</div>
+            <div class="py-2 px-3 rounded-lg bg-white/5 border border-white/10">✓ Shipped LiveOps & Feature-Lock</div>
+          </div>
+        </div>
+
+        <div class="md:col-span-8 space-y-4">
+          <span class="font-mono text-xs text-ember uppercase tracking-widest">About Your Consultant</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
+            I’ve Seen How Ambitious Games Break From the Inside—And How to Prevent It.
+          </h2>
+          <p class="text-gray-300 text-base leading-relaxed">
+            Hi, I’m <strong class="text-white">Jorge Aranda López</strong>, a PMP®-certified Consulting Producer and former Producer at <strong class="text-white">Cloud Imperium Games</strong> (<em>Star Citizen</em>, <em>Squadron 42</em>).
+          </p>
+          <p class="text-gray-300 text-base leading-relaxed">
+            Working inside one of the most technically complex and ambitious AAA development environments in the industry taught me a lesson that is priceless for smaller studios: <strong class="text-spark">unlimited ambition without strict scope locks destroys schedules and burns out teams.</strong>
+          </p>
+          <p class="text-gray-300 text-base leading-relaxed">
+            At CIG, I learned how to coordinate cross-disciplinary engineering and art pipelines, ship working LiveOps builds under pressure, and push <em>Squadron 42</em> milestones toward feature-lock despite massive organizational complexity.
+          </p>
+          <p class="text-gray-300 text-base leading-relaxed">
+            Now, I pass those lessons directly to independent and AA founders. Most indie teams have great creative vision and strong technical prototypes, but lack senior production structure. My job is to help you build a realistic roadmap, a clean financial model, and a pitch package that proves to publishers their money is in safe hands.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVISOR CLARO DE CAPÍTULO 02 -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="section-divider">
+      <span class="relative z-10 px-4 py-1 rounded-full bg-night border border-ember/40 font-mono text-xs text-ember uppercase tracking-widest">
+        Chapter 02 • Common Pitch Red Flags & Solutions
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= SECCIÓN 2: RED FLAGS INTERACTIVAS (CON CLICK-TO-OPEN SOLUTIONS + PAQUETE RECOMENDADO) ================= -->
+  <section id="problem" class="py-16 sm:py-20 bg-campfire/70 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <span class="font-mono text-xs text-ember uppercase tracking-widest">The Due Diligence Gap</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
+          3 Red Flags That Make Publishers Pass on Good Prototypes
+        </h2>
+        <p class="text-gray-300 mt-4 text-base sm:text-lg leading-relaxed">
+          A playable Unreal or Unity demo and organic YouTube views will get you an introductory call. But before a publisher wires $1M–$5M, their production and finance teams run due diligence. <strong class="text-spark">Click on any red flag below to see how we solve it:</strong>
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 mt-12 items-start">
+        
+        <!-- RED FLAG 1 -->
+        <div class="cozy-card p-7 rounded-2xl flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #1</span>
+            <h3 class="text-xl font-bold text-white mt-4">Unproven Scope & Asset Math</h3>
+            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+              You know what game you want to build, but you can’t prove how 12 developers will deliver 300+ unique 3D assets, complex AI, and 60 FPS optimization in 30 months without running out of cash.
+            </p>
+          </div>
+
+          <!-- Click-to-open solution preview -->
+          <details class="mt-6 pt-4 border-t border-white/10 group">
+            <summary class="cursor-pointer font-mono text-xs text-spark hover:text-ember list-none flex items-center justify-between">
+              <span>🔧 How I help you fix this</span>
+              <span class="text-ember group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 p-4 rounded-xl bg-night/80 border border-ember/30 text-xs text-gray-300 space-y-3 leading-relaxed">
+              <p>
+                <strong class="text-white">The Solution:</strong> We break down your asset list into modular pipelines (e.g., separating base meshes from historical or cosmetic variations) and defer high-risk engineering features (like full Campaign AI or multiplayer) out of your pre-funding build so you can ship a rock-solid 30-minute Vertical Slice first.
+              </p>
+              <div class="pt-2 border-t border-white/10 flex items-center justify-between font-mono text-[11px]">
+                <span class="text-gray-400">Recommended Service:</span>
+                <a href="#pkg-audit" class="text-ember hover:underline font-bold">Pitch Readiness Audit →</a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- RED FLAG 2 -->
+        <div class="cozy-card p-7 rounded-2xl flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #2</span>
+            <h3 class="text-xl font-bold text-white mt-4">Broken Financial & Break-Even Math</h3>
+            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+              Your budget spreadsheet is a rough estimate. Publishers immediately spot wrong tax formulas, unrealistic recoup timelines, and sales targets that aren't backed by real Steam genre data.
+            </p>
+          </div>
+
+          <!-- Click-to-open solution preview -->
+          <details class="mt-6 pt-4 border-t border-white/10 group">
+            <summary class="cursor-pointer font-mono text-xs text-spark hover:text-ember list-none flex items-center justify-between">
+              <span>🔧 How I help you fix this</span>
+              <span class="text-ember group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 p-4 rounded-xl bg-night/80 border border-ember/30 text-xs text-gray-300 space-y-3 leading-relaxed">
+              <p>
+                <strong class="text-white">The Solution:</strong> I audit your entire P&L spreadsheet formula by formula—fixing how Steam cuts, VAT, publisher recoup waterfalls, and corporate taxes interact. Then we benchmark your break-even unit count against real SteamDB/Boxleiter genre comps so investors see a credible 3x–6x ROI path.
+              </p>
+              <div class="pt-2 border-t border-white/10 flex items-center justify-between font-mono text-[11px]">
+                <span class="text-gray-400">Recommended Service:</span>
+                <a href="#pkg-review" class="text-ember hover:underline font-bold">€250 Red-Flag Review →</a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- RED FLAG 3 -->
+        <div class="cozy-card p-7 rounded-2xl flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20">Red Flag #3</span>
+            <h3 class="text-xl font-bold text-white mt-4">No Senior Producer in the Room</h3>
+            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+              Publishers rarely wire $1M–$5M to talented engineers and artists who have never managed a multi-year production cycle or a 15-person hiring ramp-up. They want someone protecting the schedule.
+            </p>
+          </div>
+
+          <!-- Click-to-open solution preview -->
+          <details class="mt-6 pt-4 border-t border-white/10 group">
+            <summary class="cursor-pointer font-mono text-xs text-spark hover:text-ember list-none flex items-center justify-between">
+              <span>🔧 How I help you fix this</span>
+              <span class="text-ember group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="mt-4 p-4 rounded-xl bg-night/80 border border-ember/30 text-xs text-gray-300 space-y-3 leading-relaxed">
+              <p>
+                <strong class="text-white">The Solution:</strong> We build a 15–20 page Publisher Pre-Read Document (covering your 36-month Gantt roadmap, hiring ramp-up, and risk register), and I can join your pitch roster as your Fractional Executive Producer—co-signing milestones and running weekly leadership reviews.
+              </p>
+              <div class="pt-2 border-t border-white/10 flex items-center justify-between font-mono text-[11px]">
+                <span class="text-gray-400">Recommended Service:</span>
+                <a href="#pkg-turnkey" class="text-ember hover:underline font-bold">Turnkey Package / Fractional EP →</a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVISOR CLARO DE CAPÍTULO 03 -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="section-divider">
+      <span class="relative z-10 px-4 py-1 rounded-full bg-night border border-ember/40 font-mono text-xs text-ember uppercase tracking-widest">
+        Chapter 03 • Services & Transparent Pricing
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= SECCIÓN 3: SERVICIOS Y PRECIOS (CON LA FREE CALL INTEGRADA Y EXPLICADA) ================= -->
+  <section id="services" class="py-16 sm:py-20 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="font-mono text-xs text-ember uppercase tracking-widest">How We Work Together</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
+          Production Advisory & Pitch Packages
+        </h2>
+        <p class="text-gray-300 mt-4 text-base">
+          Start with a free introductory chat or a single 75-minute review session, or bring me in to build your full diligence package.
+        </p>
+        <p class="text-xs font-mono text-gray-500 mt-2">All prices in EUR, excl. VAT.</p>
+      </div>
+
+      <!-- FILA SUPERIOR: PASO 0 (FREE 20-MIN CALL EXPLICADA) + PASO 1 (€250 REVIEW SESSION) -->
+      <div class="grid md:grid-cols-2 gap-6 mt-12">
+
+        <!-- OPCIÓN 0: FREE 20-MIN CALL (Integrada y explicada como pidió el feedback) -->
+        <div class="cozy-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-white/15">
+          <div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-xs text-gray-400 uppercase">Step 00 • Intro Chat</span>
+              <span class="font-mono text-2xl font-bold text-white">Free <span class="text-xs font-normal text-gray-400">(20 Min)</span></span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-2">Free 20-Minute Pitch Readiness Call</h3>
+            <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+              <strong class="text-white">What happens on this call:</strong> A casual, no-pressure chat where you show me where your prototype currently stands, what budget range you want to ask publishers for, and when you plan to pitch. I’ll give you an honest assessment of whether you’re ready to pitch now or what gaps you need to close first.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs font-mono text-gray-400">No prep required • Rolling availability</span>
+            <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
+               class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-ember hover:text-night text-white font-bold text-xs sm:text-sm transition-all">
+              Book Free 20-Min Call →
+            </a>
+          </div>
+        </div>
+
+        <!-- OPCIÓN 1: €250 SINGLE SESSION -->
+        <div id="pkg-review" class="cozy-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-ember/40">
+          <div>
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-xs text-spark uppercase">Step 01 • Single Working Session</span>
+              <span class="font-mono text-2xl font-bold text-spark">€250 <span class="text-xs font-normal text-gray-400">(75 Min + Notes)</span></span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-2">Budget & Scope Red-Flag Review</h3>
+            <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+              Send me your current pitch deck and budget sheet beforehand. I review both in advance, and we spend 75 minutes dissecting the exact issues most likely to stall publisher due diligence: scope vs. headcount, recoup math, and unit economics. You get a 1-page written action list within 48 hours.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xs font-mono text-ember">100% credited if you book a full Audit within 30 days</span>
+            <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="review" target="_blank" rel="noopener"
+               class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-ember to-flame text-night font-bold text-xs sm:text-sm transition-all shrink-0 ml-2">
+              Book €250 Review →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FILA INFERIOR: LOS 3 PAQUETES PROFUNDOS -->
       <div class="grid lg:grid-cols-3 gap-8 mt-8 items-stretch">
 
-        <!-- SERVICIO 1 -->
-        <div class="cozy-card rounded-2xl p-8 flex flex-col justify-between">
+        <!-- SERVICIO 1: AUDIT -->
+        <div id="pkg-audit" class="cozy-card rounded-2xl p-8 flex flex-col justify-between">
           <div>
             <span class="font-mono text-xs text-gray-400 uppercase">Package 01 • Diagnostic</span>
             <h3 class="text-2xl font-bold text-white mt-1">Pitch & Diligence Readiness Audit</h3>
-            <p class="text-xs text-ember font-mono mt-1">Ideal for studios 4–8 weeks away from pitching</p>
+            <p class="text-xs text-ember font-mono mt-1">For studios 4–8 weeks away from pitching</p>
 
             <div class="my-6 pb-6 border-b border-white/10">
               <span class="text-3xl font-bold text-white font-mono">From €1,900</span>
               <span class="text-xs text-gray-400 block mt-1">One-off engagement • 2 Weeks</span>
             </div>
 
-            <p class="text-sm text-gray-300 mb-6">
-              A deep-dive diagnostic of your current prototype, deck, and budget to identify and fix every operational red flag before a publisher sees them.
+            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+              A complete diagnostic of your prototype, deck, and budget spreadsheet to identify and fix every operational red flag before you submit to publishers.
             </p>
 
             <ul class="space-y-3 text-sm text-gray-300">
               <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Scope & Pipeline Triage:</strong> Auditing engineering, 3D art, and animation bottlenecks against your Vertical Slice.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">3-Part Pitch Architecture:</strong> Structuring your Cold Teaser, 15-Slide Live Deck, and Diligence Pre-Read.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Financial & Break-Even Audit:</strong> Stress-testing your multi-year P&L, recoup split, tax logic, and unit economics.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Market Viability Comps:</strong> SteamDB & Boxleiter revenue modeling to prove 3x–6x ROI potential.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">3-Part Pitch Structure:</strong> Organizing your Cold Email Teaser, 15-Slide Live Deck, and Diligence Pre-Read outline.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Financial & Break-Even Audit:</strong> Fixing your multi-year P&L, recoup waterfall, tax logic, and unit economics.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Market Viability Comps:</strong> SteamDB & Boxleiter revenue modeling to prove a realistic 3x–6x ROI case.</span></li>
             </ul>
           </div>
 
           <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
              class="mt-8 w-full py-3.5 rounded-xl bg-white/10 hover:bg-ember hover:text-night text-white font-bold text-sm text-center transition-all">
-            Book an Audit Call →
+            Schedule Audit Intro Call →
           </a>
         </div>
 
-        <!-- SERVICIO 2 (DESTACADO) -->
-        <div class="cozy-card rounded-2xl p-8 flex flex-col justify-between border-ember/50 relative shadow-[0_0_35px_-10px_rgba(245,158,11,0.25)]">
+        <!-- SERVICIO 2: TURNKEY (DESTACADO) -->
+        <div id="pkg-turnkey" class="cozy-card rounded-2xl p-8 flex flex-col justify-between border-ember/50 relative shadow-[0_0_35px_-10px_rgba(245,158,11,0.25)]">
           <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-ember to-flame text-night font-mono font-bold text-[11px] uppercase tracking-wider whitespace-nowrap">
             Recommended Before a Pitch
           </div>
@@ -432,22 +652,22 @@
           <div>
             <span class="font-mono text-xs text-spark uppercase">Package 02 • Done-With-You</span>
             <h3 class="text-2xl font-bold text-white mt-1">Turnkey Diligence Package & Roadmap</h3>
-            <p class="text-xs text-ember font-mono mt-1">For technical founders who need hands-on execution</p>
+            <p class="text-xs text-ember font-mono mt-1">Hands-on documentation & financial build</p>
 
             <div class="my-6 pb-6 border-b border-white/10">
               <span class="text-3xl font-bold text-white font-mono">From €4,500</span>
               <span class="text-xs text-gray-400 block mt-1">Project-based • 3–4 Weeks</span>
             </div>
 
-            <p class="text-sm text-gray-300 mb-6">
-              Everything in the Readiness Audit, plus hands-on drafting and modeling of the exact operational documents publishers demand during due diligence.
+            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+              Everything in the Readiness Audit, plus hands-on drafting and modeling of the exact operational documents publishers ask for during due diligence.
             </p>
 
             <ul class="space-y-3 text-sm text-gray-300">
               <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">15–20 Page Publisher Pre-Read:</strong> Co-writing and formatting your operational, technical, and production bible.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">36-Month Gantt & Hiring Plan:</strong> Headcount ramp-up, discipline dependencies, and gate deliverables (VS, Alpha, Beta, Gold).</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Risk Register & Mitigation Matrix:</strong> Formalizing technical, staffing, and MoSCoW scope cut-back strategies.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Live Pitch Q&A Defense Prep:</strong> Mock diligence sessions to prepare leadership for tough publisher questions.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">36-Month Gantt & Hiring Plan:</strong> Headcount ramp-up, discipline dependencies, and milestone gate deliverables.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Risk Register & Cut-Back Matrix:</strong> Formalizing technical, staffing, and MoSCoW scope mitigation plans.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Live Pitch Q&A Prep:</strong> Mock diligence sessions to prepare your leads for tough publisher questions.</span></li>
             </ul>
           </div>
 
@@ -457,7 +677,7 @@
           </a>
         </div>
 
-        <!-- SERVICIO 3 -->
+        <!-- SERVICIO 3: FRACTIONAL EP -->
         <div class="cozy-card rounded-2xl p-8 flex flex-col justify-between">
           <div>
             <span class="font-mono text-xs text-gray-400 uppercase">Package 03 • Ongoing Leadership</span>
@@ -469,15 +689,15 @@
               <span class="text-xs text-gray-400 block mt-1">Monthly Retainer • Pre & Post-Funding Options</span>
             </div>
 
-            <p class="text-sm text-gray-300 mb-6">
-              Embed AAA production discipline directly into your leadership team to give publishers complete confidence in your studio's execution.
+            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+              Embed senior production leadership directly into your team so publishers know an experienced Producer is protecting their investment every week.
             </p>
 
             <ul class="space-y-3 text-sm text-gray-300">
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Official Pitch Co-Signer:</strong> Including my credentials (PMP®, Ex-CIG Producer) in your deck and live publisher meetings.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Official Pitch Co-Signer:</strong> Including my credentials (PMP®, Ex-CIG Producer) in your deck and publisher meetings.</span></li>
               <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Weekly Internal Leadership Syncs:</strong> 90-min reviews tracking sprint velocity, milestone burndown, and risk triage.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Bi-Weekly Publisher Milestone Syncs:</strong> Managing publisher reporting and milestone sign-offs so the CEO can focus on the game.</span></li>
-              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Scaling & Pipeline Governance:</strong> Setting up production workflows, QA plans, and onboarding as your team scales.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Bi-Weekly Publisher Milestone Syncs:</strong> Managing publisher reporting and sign-offs so the CEO can focus on the game.</span></li>
+              <li class="flex gap-3"><span class="text-ember">✦</span> <span><strong class="text-white">Scaling & Pipeline Setup:</strong> Setting up production tracking, QA workflows, and onboarding as your team grows.</span></li>
             </ul>
           </div>
 
@@ -491,82 +711,108 @@
     </div>
   </section>
 
-  <!-- ================= PASO 3A: CASO DE ESTUDIO (#case-studies) ================= -->
-  <section id="case-studies" class="py-24 bg-campfire/60 border-y border-white/5">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="mb-12">
-        <span class="font-mono text-xs text-ember uppercase tracking-widest">Proven Impact</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">
-          Featured Case Study: Structuring a $5M Grand Strategy Pitch
-        </h2>
-      </div>
+  <!-- DIVISOR CLARO DE CAPÍTULO 04 -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="section-divider">
+      <span class="relative z-10 px-4 py-1 rounded-full bg-night border border-ember/40 font-mono text-xs text-ember uppercase tracking-widest">
+        Chapter 04 • Detailed Client Case Study
+      </span>
+    </div>
+  </div>
 
-      <!-- [GUÍA] BLOQUE DE CASO DE ESTUDIO (Para añadir otro cliente en el futuro, copia y pega este div completo) -->
+  <!-- ================= SECCIÓN 4: CASO DE ESTUDIO REESCRITO (NARRATIVO, CLARO Y CON NÚMEROS REALES INTEGRADOS) ================= -->
+  <section id="case-studies" class="py-16 sm:py-20 bg-campfire/70 border-y border-white/10">
+    <div class="max-w-5xl mx-auto px-6">
+      
       <div class="cozy-card rounded-3xl p-8 sm:p-12 border border-ember/30">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-8 border-b border-white/10">
-          <div>
-            <div class="inline-flex items-center gap-2 font-mono text-xs text-spark bg-ember/10 px-3 py-1 rounded-md border border-ember/20 mb-3">
-              <span>UNREAL ENGINE 5</span> • <span>HISTORICAL GRAND STRATEGY / RTS</span> • <span>10,000+ UNIT BATTLES</span>
+        
+        <!-- Encabezado claro para cualquiera que no conozca el estudio -->
+        <div class="pb-8 border-b border-white/10">
+          <div class="inline-flex flex-wrap items-center gap-2 font-mono text-xs text-spark bg-ember/10 px-3 py-1 rounded-md border border-ember/20 mb-4">
+            <span>CASE STUDY</span> • <span>UNREAL ENGINE 5 GRAND STRATEGY GAME</span> • <span>$5M / 36-MONTH PITCH</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white leading-tight">
+            Preparing a $5M Publisher Pitch & Fixing a $500K Budget Error for a 6-Person Strategy Studio
+          </h2>
+          <p class="text-gray-300 text-sm sm:text-base mt-3 leading-relaxed">
+            <strong class="text-white">Client:</strong> Broken Rampart Interactive (an independent European team of 6 part-time developers, including a former NVIDIA GPU optimization architect). <strong class="text-white">Project:</strong> <em>Project Renaissance</em>, a historical medieval grand strategy and real-time battle game set between 1066 and 1550.
+          </p>
+        </div>
+
+        <!-- 3 Bloques Narrativos Detallados con los números reales integrados en negrita (sin cajas repetidas arriba) -->
+        <div class="space-y-10 pt-8">
+
+          <!-- 01 THE SITUATION -->
+          <div class="grid md:grid-cols-12 gap-4 sm:gap-8 items-start">
+            <div class="md:col-span-4">
+              <span class="font-mono text-xs uppercase text-ember tracking-wider block">01 / The Starting Point</span>
+              <h3 class="text-xl font-bold text-white mt-1">Strong Tech & Organic Traction, Missing Studio Structure</h3>
             </div>
-            <h3 class="text-2xl sm:text-3xl font-bold text-white">
-              Broken Rampart Interactive - <em>Project Renaissance</em>
-            </h3>
+            <div class="md:col-span-8 text-gray-300 text-sm sm:text-base space-y-3 leading-relaxed">
+              <p>
+                Before we started working together, the team had solved the hardest technical problem of their genre: they built a custom Unreal Engine 5 battle prototype capable of rendering <strong class="text-white">10,000 to 40,000 soldiers on screen at 60–80 FPS</strong>, alongside a procedural city generator for medieval London.
+              </p>
+              <p>
+                Organic coverage from strategy YouTubers had already generated <strong class="text-white">over 600,000 YouTube views</strong> and a <strong class="text-white">1,300+ member Discord community</strong>, which caught the attention of tier-1 strategy publishers (including Hooded Horse). However, the founder was a technical CEO with no prior game production background. To justify a <strong class="text-spark">$5,060,000 USD budget across 36 months</strong> (scaling from 6 part-timers to <strong class="text-white">15–19 full-time developers</strong>), they needed a credible production plan, a de-risked asset pipeline, and a financial model that could survive publisher due diligence.
+              </p>
+            </div>
           </div>
-          <div class="text-left lg:text-right font-mono">
-            <span class="text-xs text-gray-400 block">TARGET FINANCING ASK</span>
-            <span class="text-2xl font-bold text-ember">$5,000,000 USD (36 Months)</span>
+
+          <!-- 02 THE INTERVENTION -->
+          <div class="grid md:grid-cols-12 gap-4 sm:gap-8 items-start pt-8 border-t border-white/10">
+            <div class="md:col-span-4">
+              <span class="font-mono text-xs uppercase text-ember tracking-wider block">02 / What We Did Together</span>
+              <h3 class="text-xl font-bold text-white mt-1">De-Risking the Vertical Slice & Structuring the Diligence Bible</h3>
+            </div>
+            <div class="md:col-span-8 text-gray-300 text-sm sm:text-base space-y-3 leading-relaxed">
+              <p>
+                I stepped in as Consulting Producer to audit their scope, pipeline, and documentation before publisher submission:
+              </p>
+              <ul class="space-y-2.5 list-disc pl-5">
+                <li>
+                  <strong class="text-white">Protecting the 30-Minute Vertical Slice:</strong> The team had not yet started building Campaign AI or 8-player multiplayer—two massive engineering sinks. Instead of letting those stall their pre-funding build, we locked the immediate scope around a tight, scripted <strong class="text-white">30-minute playable Vertical Slice loop</strong> and moved full Campaign AI and multiplayer into gated, funded Alpha milestones.
+                </li>
+                <li>
+                  <strong class="text-white">Modular 3D & Animation Pipeline:</strong> Their historian and art lead scoped <strong class="text-white">400 historical armors (300 unique) and 800 medieval buildings</strong>. To make that believable on an indie headcount, we structured a modular gear pipeline, motion-capture suit workflows, and clear outsourcer budgets.
+                </li>
+                <li>
+                  <strong class="text-white">3-Part Publisher Pitch Package:</strong> Instead of sending a single bloated slide deck, we separated the pitch into a short Cold Email Teaser, a <strong class="text-white">15-slide visual Sales Deck</strong> for live meetings, and a comprehensive <strong class="text-white">20-page Publisher Pre-Read Diligence Document</strong> containing the 36-month Gantt roadmap, hiring ramp-up, and risk register.
+                </li>
+              </ul>
+            </div>
           </div>
+
+          <!-- 03 THE CONCRETE NUMBERS -->
+          <div class="grid md:grid-cols-12 gap-4 sm:gap-8 items-start pt-8 border-t border-white/10">
+            <div class="md:col-span-4">
+              <span class="font-mono text-xs uppercase text-ember tracking-wider block">03 / The Concrete Numbers</span>
+              <h3 class="text-xl font-bold text-white mt-1">Unlocking +$500K (+76%) in Studio Profit & Dropping Break-Even by 20%</h3>
+            </div>
+            <div class="md:col-span-8 text-gray-300 text-sm sm:text-base space-y-3 leading-relaxed">
+              <p>
+                When auditing the studio’s budget projection spreadsheet (<code class="text-xs font-mono text-spark bg-white/5 px-1.5 py-0.5 rounded">$40 SRP • 50/50 publisher revenue split</code>), I found a critical formula error in their recoup waterfall: the spreadsheet was deducting a 20% corporate tax rate directly from gross post-Steam revenue ($8.0M at 400,000 units) <em>before</em> subtracting the <strong class="text-white">$5.06M</strong> development investment.
+              </p>
+              <p>
+                Because corporate tax only applies to net profit <em>after</em> deductible development costs are recouped, fixing the financial model completely changed the pitch’s viability:
+              </p>
+              <ul class="space-y-2.5 list-disc pl-5">
+                <li>
+                  <strong class="text-spark">Break-Even Threshold Lowered by 20%:</strong> Under the broken formula, the game needed <strong class="text-white">316,250 copies</strong> just to recoup the $5.06M budget. Correcting the tax and recoup logic dropped the real break-even point down to <strong class="text-spark">253,000 units</strong> (63,250 fewer copies required to break even).
+                </li>
+                <li>
+                  <strong class="text-spark">Projected Studio Net Profit Increased by +76% (+$507K):</strong> At their target scenario of 400,000 copies sold ($8.0M post-Steam revenue), the studio’s 50% net profit share rose from an undercounted <strong class="text-white">$669,000 USD up to $1,176,000 USD</strong>.
+                </li>
+                <li>
+                  <strong class="text-white">Real Corporate Market Comps:</strong> To validate the commercial ceiling for investors, we combined SteamDB Boxleiter multipliers with official UK Companies House financial filings for <strong class="text-white">The Creative Assembly / SEGA (£112.28M annual turnover / £98.13M dev spend)</strong>—demonstrating how a focused $5M Unreal Engine 5 title can capture high-margin demand in the medieval strategy gap.
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
 
-        <!-- 4 KPIs con los porcentajes calculados -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 py-8 border-b border-white/10">
-          <div class="bg-night/60 p-5 rounded-2xl border border-white/5">
-            <span class="font-mono text-3xl font-bold text-spark">+76%</span>
-            <span class="font-mono text-xs text-ember block mt-0.5">(+$500K USD Unlocked)</span>
-            <p class="text-xs text-gray-400 mt-2">Increase in projected studio net profit after auditing and fixing corporate tax & recoup P&L formulas.</p>
-          </div>
-          <div class="bg-night/60 p-5 rounded-2xl border border-white/5">
-            <span class="font-mono text-3xl font-bold text-spark">-20%</span>
-            <span class="font-mono text-xs text-ember block mt-0.5">316K → 253K Units</span>
-            <p class="text-xs text-gray-400 mt-2">Reduction in break-even unit threshold at a $40 SRP, making the investment significantly safer for publishers.</p>
-          </div>
-          <div class="bg-night/60 p-5 rounded-2xl border border-white/5">
-            <span class="font-mono text-3xl font-bold text-spark">$5.0M</span>
-            <span class="font-mono text-xs text-ember block mt-0.5">15–19 FTE Ramp-Up</span>
-            <p class="text-xs text-gray-400 mt-2">36-month hiring roadmap, modular 3D pipeline (300+ historical armors / 800 buildings), and milestone gates.</p>
-          </div>
-          <div class="bg-night/60 p-5 rounded-2xl border border-white/5">
-            <span class="font-mono text-3xl font-bold text-spark">600K+</span>
-            <span class="font-mono text-xs text-ember block mt-0.5">Organic YouTube Views</span>
-            <p class="text-xs text-gray-400 mt-2">Converted community traction & UK Companies House filings (Creative Assembly/SEGA) into 4x–6x ROI comps.</p>
-          </div>
-        </div>
-
-        <!-- Challenge / Intervention / Outcome -->
-        <div class="grid md:grid-cols-3 gap-8 pt-8">
-          <div>
-            <h4 class="font-mono text-xs uppercase text-ember tracking-wider mb-2">01 / The Challenge</h4>
-            <p class="text-sm text-gray-300 leading-relaxed">
-              A brilliant technical team (including an ex-NVIDIA GPU architect) built a proprietary UE5 battle engine capable of rendering 10,000+ soldiers at 60–80 FPS, generating 600K+ organic YouTube views. When approached by tier-1 strategy publishers, they lacked the studio management pedigree, financial modeling, and production documentation to justify a $5M budget.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-mono text-xs uppercase text-ember tracking-wider mb-2">02 / The Intervention</h4>
-            <p class="text-sm text-gray-300 leading-relaxed">
-              Stepped in as Consulting Producer to audit their scope, defer high-risk features (such as full Campaign AI and 8-player multiplayer) to funded phases to protect the 30-minute Vertical Slice, and architect a 20-page Publisher Pre-Read. Rebuilt their 36-month P&L and analyzed UK corporate filings to prove genre scalability.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-mono text-xs uppercase text-ember tracking-wider mb-2">03 / The Result</h4>
-            <p class="text-sm text-gray-300 leading-relaxed">
-              Uncovered a critical tax-modeling error that unlocked $500K (+76%) in studio net profit and dropped break-even by 20%. The studio transitioned from an unorganized prototype into a structured pitch and diligence package, now being finalized for publisher submission.
-            </p>
-          </div>
-        </div>
-
-        <!-- BLOQUE DE TESTIMONIO DEL CLIENTE (OCULTO POR DEFECTO CON "hidden") -->
-        <!-- [GUÍA] En cuanto Dastan te apruebe el testimonio por escrito en Discord, borra la palabra "hidden" de la clase de aquí abajo -->
-        <div class="hidden mt-10 pt-8 border-t border-white/10 bg-night/40 p-6 sm:p-8 rounded-2xl border-l-4 border-l-ember">
+        <!-- BLOQUE DE TESTIMONIO DEL CLIENTE (OCULTO POR DEFECTO CON "hidden" HASTA QUE DASTAN CONFIRME) -->
+        <div class="mt-10 pt-8 border-t border-white/10 bg-night/40 p-6 sm:p-8 rounded-2xl border-l-4 border-l-ember">
           <p class="text-gray-200 italic text-sm sm:text-base leading-relaxed">
             "While we had strong market traction and the technical talent to build Project Renaissance, we lacked the studio management experience required to justify a $5M budget to tier-1 publishers. Working with Jorge gave us the exact operational structure and publisher-readiness we needed. He audited our scope, fixed critical gaps in our financial and tax models, and guided our transition from a rough prototype to a complete diligence package. Having his production expertise on board not only saved us months of trial and error, but also gives publishers the reassurance that we can deliver on time and on scope."
           </p>
@@ -580,99 +826,67 @@
         </div>
 
       </div>
-      <!-- FIN DEL BLOQUE DE CASO DE ESTUDIO -->
 
     </div>
   </section>
 
-  <!-- ================= PASO 3B: SOBRE MÍ (#about) ================= -->
-  <section id="about" class="py-24">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="cozy-card rounded-3xl p-8 sm:p-12 grid md:grid-cols-12 gap-10 items-center">
-        
-        <div class="md:col-span-4 text-center md:text-left">
-          <div class="w-36 h-36 mx-auto md:mx-0 rounded-2xl bg-gradient-to-br from-ember/30 to-flame/10 border border-ember/40 flex flex-col items-center justify-center p-4 shadow-xl">
-            <span class="font-display text-4xl font-bold text-spark">JAL</span>
-            <span class="font-mono text-[10px] text-ember mt-1 uppercase tracking-widest">PMP® • EX-CIG</span>
-          </div>
-          <div class="mt-6 space-y-2 font-mono text-xs text-gray-300">
-            <div class="py-1.5 px-3 rounded bg-white/5 border border-white/10">✓ PMP® Certified Producer</div>
-            <div class="py-1.5 px-3 rounded bg-white/5 border border-white/10">✓ Ex-Cloud Imperium Games</div>
-            <div class="py-1.5 px-3 rounded bg-white/5 border border-white/10">✓ Star Citizen & Squadron 42</div>
-          </div>
-        </div>
-
-        <div class="md:col-span-8 space-y-4">
-          <span class="font-mono text-xs text-ember uppercase tracking-widest">About Your Advisor</span>
-          <h2 class="font-display text-2xl sm:text-3xl font-bold text-white">
-            I Know Where Ambitious Games Break. And How to Prevent It.
-          </h2>
-          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Hi, I’m <strong class="text-white">Jorge Aranda López</strong>, a Scrum and PMP®-certified Consulting Producer and former Producer at <strong class="text-white">Cloud Imperium Games</strong> (<em>Star Citizen</em>, <em>Squadron 42</em>).
-          </p>
-          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Working inside one of the most technically ambitious and complex AAA development environments in history taught me a priceless lesson for indie and AA studios: <strong class="text-spark">raw ambition without ruthless scope governance kills schedules.</strong>
-          </p>
-          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            At CIG, I learned how to ship working LiveOps builds, manage cross-disciplinary dependencies across massive engineering and art pipelines, and push <em>Squadron 42</em> toward feature-lock despite immense organizational complexity.
-          </p>
-          <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Today, I bring that exact operational discipline to independent studios. I’ve seen the "scope creep trap" from the inside, and my job is making sure your studio hits its milestones on time, on budget, and without burning out your team.
-          </p>
-        </div>
-
-      </div>
+  <!-- DIVISOR CLARO DE CAPÍTULO 05 -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="section-divider">
+      <span class="relative z-10 px-4 py-1 rounded-full bg-night border border-ember/40 font-mono text-xs text-ember uppercase tracking-widest">
+        Chapter 05 • Frequently Asked Questions
+      </span>
     </div>
-  </section>
+  </div>
 
-  <!-- ================= PASO 4: FAQ (MANEJO DE OBJECIONES) ================= -->
-  <section id="faq" class="py-20 bg-campfire/60 border-t border-white/5">
+  <!-- ================= SECCIÓN 5: FAQ ================= -->
+  <section id="faq" class="py-16 sm:py-20">
     <div class="max-w-4xl mx-auto px-6">
       <div class="text-center mb-12">
-        <span class="font-mono text-xs text-ember uppercase tracking-widest">Common Questions</span>
+        <span class="font-mono text-xs text-ember uppercase tracking-widest">Practical Details</span>
         <h2 class="font-display text-3xl font-bold text-white mt-2">Frequently Asked Questions</h2>
       </div>
 
       <div class="space-y-4">
         <div class="cozy-card p-6 rounded-2xl">
           <h3 class="text-white font-bold text-base">1. When is the best time to bring you in?</h3>
-          <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-            Ideally 4 to 8 weeks <em>before</em> you submit your formal pitch deck and pre-read documentation to publishers. While a publisher might take an introductory call based on your prototype or YouTube traction, winning a $1M–$5M term sheet requires passing technical and production due diligence.
+          <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+            Ideally 4 to 8 weeks <em>before</em> you send your formal pitch deck and budget to publishers. While a publisher might take a first meeting based on a cool prototype or YouTube video, getting an actual $1M–$5M contract signed requires passing technical, financial, and production due diligence.
           </p>
         </div>
 
         <div class="cozy-card p-6 rounded-2xl">
           <h3 class="text-white font-bold text-base">2. Do you join our live publisher meetings and put your name on the deck?</h3>
-          <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-            Yes. Under the <strong>Fractional Executive Producer</strong> engagement (or structured LOI partnerships for select high-traction projects), I join your leadership roster as your External Production Advisor .Giving publishers immediate reassurance that a PMP®-certified, ex-AAA Producer is overseeing milestone execution.
+          <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+            Yes. Under the <strong>Fractional Executive Producer</strong> engagement (or structured LOI partnerships for select projects), I join your leadership roster as your External Production Advisor—giving publishers immediate reassurance that a PMP®-certified, ex-AAA Producer is overseeing milestone execution.
           </p>
         </div>
 
         <div class="cozy-card p-6 rounded-2xl">
-          <h3 class="text-white font-bold text-base">3. We are pre-funding and bootstrapping. Can we structure a success-based or phased deal?</h3>
-          <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-            For studios with strong existing technical prototypes and proven organic traction, I’m open to hybrid agreements combining a reduced upfront audit fee with a post-funding Pitch Success Bonus and monthly production retainer once the publisher contract is signed. Book a discovery call to discuss your studio's stage.
+          <h3 class="text-white font-bold text-base">3. We are pre-funding and bootstrapping. Can we structure a phased deal?</h3>
+          <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+            For teams with strong existing technical prototypes and organic traction, I’m open to hybrid agreements combining a reduced upfront fee with a post-funding Pitch Success Bonus and monthly production retainer once the publisher contract is signed. Book a free 20-minute call and we can discuss your studio's situation.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= FOOTER CTA (BOOK A CALL) ================= -->
-  <footer id="book" class="py-24 relative overflow-hidden fire-glow-bg border-t border-white/10">
+  <!-- ================= FOOTER CTA ================= -->
+  <footer id="book" class="py-20 relative overflow-hidden bg-campfire/80 border-t border-white/10">
     <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-      <span class="font-mono text-xs text-spark uppercase tracking-widest">🔥 Ready to Pitch with Confidence?</span>
-      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-3">
-        Pull Up a Seat by the Fire. Let’s Audit Your Pitch.
+      <span class="font-mono text-xs text-spark uppercase tracking-widest">Let’s Talk About Your Project</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-3">
+        Preparing to Pitch a Publisher?
       </h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-        Book a free 20-minute Call. We’ll review your current prototype stage, target budget, and identify any red flags before you talk to publishers.
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto text-base">
+        Book a free 20-minute intro call to talk through your prototype stage and target budget, or send me an email directly.
       </p>
 
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener"
-           class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-ember to-flame text-night font-bold text-base shadow-[0_0_30px_rgba(245,158,11,0.45)] hover:scale-105 transition-all">
-          Schedule a Free 20-Min Call →
+           class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-ember to-flame text-night font-bold text-base shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-105 transition-all">
+          Book a Free 20-Min Call →
         </a>
         <a href="mailto:jaranlopz@gmail.com?subject=Pitch%20Advisory%20Inquiry" data-link="email"
            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-base transition-all">
@@ -683,6 +897,7 @@
       <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-mono gap-4">
         <div>© <span id="year"></span> Jorge Aranda López, PMP®. All rights reserved.</div>
         <div class="flex gap-6">
+          <a href="articles.html" class="hover:text-ember transition-colors">Articles</a>
           <a href="#" data-link="linkedin" target="_blank" rel="noopener" class="hover:text-ember transition-colors">LinkedIn</a>
           <a href="mailto:jaranlopz@gmail.com?subject=Pitch%20Advisory%20Inquiry" data-link="email" class="hover:text-ember transition-colors">Email</a>
           <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" data-link="calendly" target="_blank" rel="noopener" class="hover:text-ember transition-colors">Cal.com</a>
@@ -691,57 +906,50 @@
     </div>
   </footer>
 
-  <!-- =====================================================================
-       [GUÍA] SCRIPTS DE CONFIGURACIÓN Y PARTÍCULAS DE HOGUERA
-       Tus enlaces de Cal.com y Gmail ya están activos en toda la página.
-  ====================================================================== -->
+  <!-- ================= SCRIPTS ================= -->
   <script>
-    // 1. TUS ENLACES CENTRALIZADOS
     const SITE_LINKS = {
       calendly: "https://cal.com/jorge-aranda-lopez-d3vboo/free-call",
-      review: "https://cal.com/jorge-aranda-lopez-d3vboo/free-call", // <-- Cuando crees el evento de €250 en Cal.com, pega su link aquí
+      review: "https://cal.com/jorge-aranda-lopez-d3vboo/free-call",
       email: "mailto:jaranlopz@gmail.com?subject=Pitch%20Advisory%20Inquiry",
-      linkedin: "https://www.linkedin.com/in/jaranlopz/" // <-- Pon aquí tu URL de LinkedIn
+      linkedin: "https://www.linkedin.com/in/jaranlopz/"
     };
 
-    // Aplica los enlaces automáticamente a todos los botones con data-link
     document.querySelectorAll('[data-link]').forEach(el => {
       const key = el.getAttribute('data-link');
       if (SITE_LINKS[key]) el.setAttribute('href', SITE_LINKS[key]);
     });
 
-    // Año automático en el footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 2. SISTEMA DE PARTÍCULAS DE BRASAS (Cozy Campfire Embers)
+    // Brasas flotantes en la escena de la hoguera
     const canvas = document.getElementById('emberCanvas');
     const ctx = canvas.getContext('2d');
     let embers = [];
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const parent = canvas.parentElement;
+      canvas.width = parent.clientWidth;
+      canvas.height = parent.clientHeight;
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
     class Ember {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 100;
+        this.x = canvas.width * 0.25 + Math.random() * (canvas.width * 0.5);
+        this.y = canvas.height - 40 + Math.random() * 60;
         this.size = Math.random() * 2.5 + 0.8;
-        this.speedY = Math.random() * 0.7 + 0.25;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.65 + 0.2;
+        this.speedY = Math.random() * 0.8 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.7 + 0.2;
         this.color = Math.random() > 0.4 ? '#f59e0b' : '#fde68a';
       }
       update() {
         this.y -= this.speedY;
-        this.x += this.speedX + Math.sin(this.y * 0.015) * 0.2;
-        if (this.y < -10) this.reset();
+        this.x += this.speedX + Math.sin(this.y * 0.02) * 0.25;
+        if (this.y < 10) this.reset();
       }
       draw() {
         ctx.beginPath();
@@ -754,7 +962,7 @@
       }
     }
 
-    for (let i = 0; i < 38; i++) {
+    for (let i = 0; i < 35; i++) {
       const e = new Ember();
       e.y = Math.random() * canvas.height;
       embers.push(e);
@@ -762,10 +970,7 @@
 
     function animateEmbers() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      embers.forEach(e => {
-        e.update();
-        e.draw();
-      });
+      embers.forEach(e => { e.update(); e.draw(); });
       requestAnimationFrame(animateEmbers);
     }
     animateEmbers();
