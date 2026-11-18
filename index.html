@@ -384,7 +384,7 @@
   </script>
 
   <!-- =====================================================================
-       1. THE CAMPFIRE STAGE (Symmetric 3D Logs + Faceless Static Character)
+       1. THE CAMPFIRE STAGE (Symmetric 3D Logs + Simple Minimalist Character)
        ===================================================================== -->
   <header class="relative pt-4 pb-8 md:pt-6 md:pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
 
@@ -412,7 +412,7 @@
       <div class="relative z-20 flex items-center justify-between gap-4">
         <a href="#about" class="flex items-center gap-3.5 group focus:outline-none">
           <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-ember-400 to-ember-600 p-0.5 shadow-lg shadow-ember-500/25 group-hover:scale-105 transition">
-            <div class= "w-full h-full rounded-full bg-night-900 flex items-center justify-center font-display font-bold text-base sm:text-lg text-ember-400" translate="no">
+            <div class="w-full h-full rounded-full bg-night-900 flex items-center justify-center font-display font-bold text-base sm:text-lg text-ember-400" translate="no">
               JAL
             </div>
           </div>
@@ -426,7 +426,7 @@
         </a>
       </div>
 
-      <!-- MIDDLE INTERACTIVE SCENE: 3 Columns (Left Panels + Log | Center Fire | Right Bubble + Faceless Character on Log) -->
+      <!-- MIDDLE INTERACTIVE SCENE: 3 Columns (Left Panels + Log | Center Fire | Right Bubble + Simple Character on Log) -->
       <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end my-auto pt-8 pb-2">
 
         <!-- LEFT COLUMN (4 cols): Floating Menu Cards over Left Log -->
@@ -549,10 +549,9 @@
                 <path d="M130 105 C114 130, 108 150, 115 170 C120 184, 140 184, 145 170 C152 150, 146 130, 130 105 Z" fill="#fef9c3" />
               </g>
 
-              <!-- Front Firewood & Stone Ring -->
+              <!-- Front Firewood & Stone Ring (Horizontal line removed) -->
               <g>
                 <rect x="58" y="194" width="144" height="20" rx="9" transform="rotate(6 130 204)" fill="#78350f" stroke="#270e02" stroke-width="2" />
-                <path d="M75 194 Q130 184 185 194" stroke="#fb923c" stroke-width="2.5" fill="none" opacity="0.7" />
                 <ellipse cx="64" cy="214" rx="16" ry="10" fill="#1e293b" stroke="#0f172a" stroke-width="2" />
                 <ellipse cx="96" cy="221" rx="18" ry="11" fill="#334155" stroke="#0f172a" stroke-width="2" />
                 <ellipse cx="132" cy="223" rx="19" ry="11" fill="#1e293b" stroke="#0f172a" stroke-width="2" />
@@ -563,7 +562,7 @@
           </a>
         </div>
 
-        <!-- RIGHT COLUMN (4 cols): Speech Bubble + Static Faceless Character on Aligned Right Log -->
+        <!-- RIGHT COLUMN (4 cols): Speech Bubble + Simple Unified Character on Aligned Right Log -->
         <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-end order-1 lg:order-3">
 
           <!-- Speech Bubble above the Consultant's Head -->
@@ -587,14 +586,14 @@
             </div>
           </div>
 
-          <!-- Static Faceless Character Seated on Symmetrical Right 3D Log -->
+          <!-- Simple, Clean Minimalist Character Seated on Symmetrical Right 3D Log -->
           <div class="w-full max-w-[330px]">
             <svg viewBox="0 0 360 190" class="w-full h-auto overflow-visible" role="img" aria-label="Minimalist illustration of consultant sitting on a log by the campfire">
               <!-- Ground shadow directly under the right log and boots -->
               <ellipse cx="180" cy="156" rx="145" ry="18" transform="rotate(6 180 156)" fill="#030508" opacity="0.78" />
-              <ellipse cx="145" cy="166" rx="38" ry="8" fill="#030508" opacity="0.85" />
+              <ellipse cx="145" cy="166" rx="36" ry="7" fill="#030508" opacity="0.85" />
 
-              <!-- Right 3D Log (Exact mirror of Left Log: Far Left near fire 55,118 rx=11,ry=18 to Near Right 310,146 rx=16,ry=24) -->
+              <!-- Right 3D Log (Exact mirror of Left Log) -->
               <g>
                 <!-- Cylinder Body -->
                 <path d="M 310,122 L 55,100 A 11,18 0 0 0 55,136 L 310,170 Z" fill="#4a1d06" stroke="#270e02" stroke-width="2" stroke-linejoin="round" />
@@ -614,38 +613,29 @@
                 <ellipse cx="310" cy="146" rx="4" ry="6" fill="#5c2409" />
               </g>
 
-              <!-- Static Faceless Character (Seated cleanly on top of the log at x=175, y=114) -->
+              <!-- Simple, Unified Minimalist Character (No mismatched strokes or outlines) -->
               <g>
                 <!-- Back Leg & Boot -->
-                <path d="M 170,114 L 138,130 L 130,156" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
-                <rect x="112" y="152" width="26" height="11" rx="5" fill="#1c0a00" stroke="#fb923c" stroke-width="0.8" />
+                <path d="M 170,112 L 138,130 L 130,156" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="113" y="152" width="25" height="10" rx="5" fill="#1c0a00" />
 
                 <!-- Front Leg & Boot -->
-                <path d="M 184,117 L 154,133 L 146,160" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
-                <rect x="128" y="156" width="26" height="11" rx="5" fill="#270e02" stroke="#fb923c" stroke-width="0.8" />
+                <path d="M 184,115 L 154,133 L 146,160" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="129" y="156" width="25" height="10" rx="5" fill="#270e02" />
 
-                <!-- Back Arm (Gesturing warmly toward the campfire) -->
-                <path d="M 166,72 L 140,82 L 118,75" fill="none" stroke="#fb923c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" />
-                <path d="M 166,72 L 140,82 L 118,75" fill="none" stroke="#475569" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="114" cy="74" r="5" fill="#fed7aa" />
+                <!-- Left Arm (Gesturing toward the fire) -->
+                <path d="M 166,72 L 138,82 L 116,74" fill="none" stroke="#475569" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="112" cy="73" r="5" fill="#fed7aa" />
 
-                <!-- Torso / Cozy Hoodie resting on the log -->
-                <path d="M 162,62 C 152,66 150,100 158,116 L 198,120 C 204,102 202,68 192,62 Z" fill="#334155" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
-                <!-- Subtle Hoodie Hood behind neck -->
-                <path d="M 186,60 C 198,60 204,68 196,76" fill="#1e293b" />
-                <!-- Warm Firelight Rim on Front of Torso -->
-                <path d="M 162,62 C 152,66 150,100 158,116" fill="none" stroke="#fb923c" stroke-width="2.8" stroke-linecap="round" opacity="0.85" />
+                <!-- Clean Rounded Torso -->
+                <rect x="160" y="60" width="34" height="56" rx="15" fill="#334155" />
 
-                <!-- Front Arm (Resting naturally toward lap/knee) -->
-                <path d="M 190,72 L 184,96 L 162,108" fill="none" stroke="#1e293b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="159" cy="109" r="4.8" fill="#fed7aa" />
+                <!-- Right Arm (Resting naturally toward lap) -->
+                <path d="M 186,74 L 180,96 L 160,106" fill="none" stroke="#1e293b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="157" cy="107" r="5" fill="#fed7aa" />
 
-                <!-- Faceless Head Silhouette (No eyes, no mouth, clean minimal style) -->
-                <circle cx="177" cy="40" r="15.5" fill="#fed7aa" />
-                <!-- Warm Firelight Rim on Left Side of Face -->
-                <path d="M 164,31 A 15.5,15.5 0 0 0 167,52" fill="none" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
-                <!-- Clean Hair Cap Silhouette -->
-                <path d="M 162,36 C 162,21 193,21 193,38 C 193,31 185,27 176,27 C 168,27 163,31 162,36 Z" fill="#1e1b18" />
+                <!-- Clean Simple Head Circle -->
+                <circle cx="177" cy="40" r="14.5" fill="#fed7aa" />
               </g>
             </svg>
           </div>
@@ -689,7 +679,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div class="lg:col-span-5">
             <div class="p-7 rounded-3xl bg-night-900 border border-slate-800 relative overflow-hidden">
-              <div class=hidden "w-16 h-16 rounded-2xl bg-ember-600/20 border border-ember-500/40 flex items-center justify-center font-display font-bold text-2xl text-ember-400 mb-5" translate="no">
+              <div class="w-16 h-16 rounded-2xl bg-ember-600/20 border border-ember-500/40 flex items-center justify-center font-display font-bold text-2xl text-ember-400 mb-5" translate="no">
                 JAL
               </div>
               <h2 class="font-display text-2xl font-bold text-white mb-1" translate="no">Jorge Aranda López</h2>
