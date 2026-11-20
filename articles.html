@@ -1,27 +1,17 @@
-<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Field Notes &amp; Production Deep Dives | Jorge Aranda López</title>
-  <meta name="description" content="Practical breakdowns on game production, vertical slice scoping, publisher due diligence pre-reads, and P&amp;L unit economics by Jorge Aranda López (PMP®, Ex-CIG).">
+  <title>Production &amp; Diligence Articles | Jorge Aranda López</title>
+  <meta name="description" content="Practical guides on Vertical Slice scoping, publisher recoupment and tax modeling, 20-page diligence pre-reads, and indie production pipelines by Jorge Aranda López (PMP®, Ex-Cloud Imperium Games).">
   <meta name="author" content="Jorge Aranda López">
   <meta name="robots" content="index, follow">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#070a10">
-
-  <link rel="canonical" href="https://oveyo.github.io/articles.html">
-
-  <!-- Inline SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f19'/%3E%3Cpath d='M32 10C22 24 18 33 23 43C26 49 38 49 41 43C46 33 42 24 32 10Z' fill='%23f97316'/%3E%3Cpath d='M32 22C27 30 25 36 28 42C30 46 34 46 36 42C39 36 37 30 32 22Z' fill='%23facc15'/%3E%3Crect x='14' y='47' width='36' height='7' rx='3.5' fill='%2378350f'/%3E%3C/svg%3E">
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -49,276 +39,270 @@
       }
     }
   </script>
-
   <style>
-    html {
-      scrollbar-gutter: stable;
-      color-scheme: dark;
-    }
-    body {
-      background-color: #070a10;
-      color: #f8fafc;
-    }
-    h1, h2, h3, h4 {
-      text-wrap: balance;
-    }
-    p, li {
-      text-wrap: pretty;
-    }
-    :focus-visible {
-      outline: 2px solid #fb923c !important;
-      outline-offset: 3px !important;
-    }
-    details > summary {
-      list-style: none;
-    }
-    details > summary::-webkit-details-marker {
-      display: none;
-    }
-    /* Clean styling for article body content */
-    .article-body p {
-      margin-bottom: 1rem;
-      line-height: 1.75;
-      color: #cbd5e1;
-    }
-    .article-body h3 {
+    html { scrollbar-gutter: stable; color-scheme: dark; }
+    body { background-color: #070a10; color: #f8fafc; overflow-x: hidden; }
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    .article-prose h2 {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       color: #ffffff;
-      margin-top: 1.75rem;
+      margin-top: 2rem;
       margin-bottom: 0.75rem;
     }
-    .article-body ul {
-      list-style-type: disc;
-      padding-left: 1.4rem;
-      margin-bottom: 1.25rem;
+    .article-prose p {
       color: #cbd5e1;
+      line-height: 1.75;
+      margin-bottom: 1.15rem;
     }
-    .article-body li {
+    .article-prose ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      color: #cbd5e1;
+      margin-bottom: 1.25rem;
+    }
+    .article-prose li {
       margin-bottom: 0.5rem;
       line-height: 1.65;
     }
-    .article-body strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-    .article-callout {
-      background: rgba(17, 24, 39, 0.85);
-      border-left: 3px solid #f97316;
-      padding: 1rem 1.25rem;
+    .article-prose .callout-box {
+      background: rgba(249, 115, 22, 0.08);
+      border-left: 4px solid #f97316;
+      padding: 1.25rem;
       border-radius: 0.75rem;
-      margin: 1.25rem 0;
+      margin: 1.5rem 0;
+    }
+    .article-prose .callout-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fb923c;
+      display: block;
+      margin-bottom: 0.35rem;
     }
   </style>
 </head>
-<body class="antialiased selection:bg-ember-500 selection:text-white min-h-screen flex flex-col justify-between">
+<body class="antialiased selection:bg-ember-500 selection:text-white min-h-screen flex flex-col">
 
-  <!-- TOP NAVIGATION -->
-  <header class="border-b border-slate-800/80 bg-night-900/75 backdrop-blur-md sticky top-0 z-30">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 text-sm font-semibold text-slate-300 hover:text-ember-400 transition">
-        <span>&larr; Back to Campfire</span>
+  <!-- Sticky Top Bar -->
+  <header class="sticky top-0 z-40 bg-night-950/90 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <span class="w-9 h-9 rounded-full bg-night-800 border border-ember-500/40 flex items-center justify-center text-ember-400 font-display font-bold text-sm group-hover:bg-ember-600 group-hover:text-white transition">
+          &larr;
+        </span>
+        <div>
+          <span class="font-display font-bold text-white text-sm sm:text-base group-hover:text-ember-300 transition block">
+            Back to Campfire Stage
+          </span>
+          <span class="text-xs text-slate-400">Jorge Aranda López • PMP® • Ex-Cloud Imperium Games</span>
+        </div>
       </a>
-      <div class="flex items-center gap-4">
-        <a href="index.html#services" class="text-xs sm:text-sm text-slate-300 hover:text-white transition">Packages</a>
-        <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-ember-600 hover:bg-ember-500 text-white text-xs font-semibold transition">
+      <div class="flex items-center gap-3">
+        <a href="index.html#services" class="hidden sm:inline-block px-3.5 py-2 rounded-xl bg-night-800 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold transition">
+          View Packages
+        </a>
+        <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-ember-600 hover:bg-ember-500 text-white text-xs sm:text-sm font-semibold transition shadow">
           Book Free 20m Call
         </a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 flex-grow w-full">
-
-    <!-- Page Header -->
-    <div class="mb-10">
-      <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-widest">
-        Field Notes from the Campfire
+  <!-- Hero Banner -->
+  <section class="py-12 sm:py-16 px-4 sm:px-6 bg-night-900/45 border-b border-slate-800/80">
+    <div class="max-w-4xl mx-auto text-center">
+      <span class="px-3 py-1 rounded-full bg-ember-500/15 border border-ember-500/35 text-ember-400 font-display font-bold text-xs uppercase tracking-widest">
+        Production &amp; Diligence Deep Dives
       </span>
       <h1 class="font-display text-3xl sm:text-5xl font-bold text-white mt-4 mb-4">
-        Production Breakdowns &amp; Diligence Deep Dives
+        Field Notes on Scoping, Budgets &amp; Publisher Pitches
       </h1>
-      <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-        Practical lessons from auditing indie and AA game studios ($1M to $10M budgets). Written for founders who want to ship on scope and investors who want to protect their capital.
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+        Practical breakdowns from real consulting engagements with Indie and AA studios.
       </p>
+      <!-- Dynamic Jump Pills -->
+      <div id="articleJumpNav" class="mt-7 flex flex-wrap items-center justify-center gap-2"></div>
     </div>
+  </section>
 
-    <!-- Category Filter Buttons (Auto-generated from ARTICLES_DATA) -->
-    <div id="categoryFilters" class="flex flex-wrap items-center gap-2 mb-8"></div>
-
-    <!-- Articles Container (Auto-generated from ARTICLES_DATA) -->
-    <div id="articlesContainer" class="space-y-6"></div>
-
+  <!-- Articles List -->
+  <main class="flex-grow py-12 sm:py-16 px-4 sm:px-6">
+    <div id="articlesContainer" class="max-w-4xl mx-auto space-y-12"></div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-800/80 py-10 bg-night-900/40 mt-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-      <p>© <span id="year"></span> <span translate="no">Jorge Aranda López</span> • PMP® Game Production Consultant</p>
-      <div class="flex items-center gap-5">
-        <a href="index.html" class="hover:text-ember-400 transition">Home</a>
-        <a href="index.html#services" class="hover:text-ember-400 transition">Packages &amp; Pricing</a>
-        <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" target="_blank" rel="noopener noreferrer" class="text-ember-400 hover:text-ember-300 font-semibold">Book Free 20m Call &rarr;</a>
+  <!-- Footer CTA -->
+  <footer class="py-14 px-4 sm:px-6 bg-night-900/60 border-t border-slate-800/80 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
+        Want to Stress-Test Your Scope or P&amp;L?
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base mb-6">
+        Book a free 20-minute readiness call or request a 5-hour Scope &amp; Budget Triage (€250).
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-ember-600 hover:bg-ember-500 text-white font-semibold text-sm transition">
+          Book Free 20-Minute Call &rarr;
+        </a>
+        <a href="index.html#services" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition">
+          View All Packages
+        </a>
       </div>
     </div>
   </footer>
 
   <!-- =====================================================================
-       ✏️ EDIT OR ADD YOUR ARTICLES HERE (ARTICLES_DATA)
-       To add a new article in the future:
-       1. Copy one { ... } block below.
-       2. Paste it at the top of the ARTICLES_DATA array.
-       3. Change the id, category, title, summary, and content.
+       EASY-TO-EDIT ARTICLES DATABASE
+       To hide any article, change `hidden: false` to `hidden: true`
        ===================================================================== -->
   <script>
     const ARTICLES_DATA = [
       {
         id: "scoping-vertical-slice",
+        hidden: false,
         category: "Scoping & Production",
-        readTime: "5 min read",
-        date: "November 2026",
+        readTime: "6 min read",
+        date: "October 2026",
         title: "What “Appropriate Scoping” Actually Means: Why You Must Cut Campaign AI and Multiplayer From Your Vertical Slice",
-        summary: "When you have no internal producer, every feature feels like a #1 priority. Here is how we cut months of pre-funding waste by separating a 30-minute scripted Vertical Slice from a 36-month Alpha roadmap.",
-        relatedPackage: "Solved in: 5-Hour Triage (€250) & 20-Hour Readiness Audit",
+        subtitle: "Many engineering-led studios try to build a miniature version of their entire game before talking to publishers. Here is why that burns out your team and how a 30-minute scripted loop wins greenlights faster.",
+        relatedPackage: "Step 01: The 5-Hour Scope & Budget Red-Flag Triage (€250)",
+        relatedLink: "index.html#services",
         content: `
-          <p>
-            When I speak with technical indie founders, the most common sentence I hear is: <strong>"We don't have a producer, and we don't know what our real priorities are right now."</strong>
-          </p>
-          <p>
-            Without a producer guarding the gate, engineering and art teams naturally try to build the <em>entire</em> final game inside their pre-funding prototype. On a recent $5.06M strategy project, the team was simultaneously trying to build a custom 40,000-unit real-time battle engine, an unstarted turn-based Campaign AI, 8-player multiplayer netcode, 400 historical armors, and 800 medieval buildings before signing a publisher.
-          </p>
-          <h3>What Publishers Actually Look For in a Vertical Slice</h3>
-          <p>
-            A publisher's production team does not expect your pre-funding Vertical Slice to be feature-complete. They want to see <strong>one repeatable 20 to 30 minute gameplay loop running at a locked 60 FPS</strong> that proves your core hook and your team's execution quality.
-          </p>
-          <div class="article-callout">
-            <p class="mb-0">
-              <strong>The Golden Rule of Pre-Funding Scope:</strong> If a system takes 6 months to engineer from scratch (like deep Grand Strategy Campaign AI or 8-player synchronous multiplayer) and is not required to prove your core 20-minute hook, it does not belong in your Vertical Slice. It belongs in your funded Alpha roadmap.
-            </p>
-          </div>
-          <h3>How We Scoped the 30-Minute Slice</h3>
+          <p>When technical founders prepare to pitch publishers for a $2M to $6M budget, they almost always fall into the same trap: they try to prove that every single system promised in their full game already works inside their pre-funding prototype.</p>
+          <p>In a recent engagement with an ambitious Unreal Engine 5 historical strategy studio, the team had already built a remarkable proprietary GPU crowd-rendering pipeline capable of displaying 10,000 to 40,000 soldiers at 60 to 80 FPS. Yet they were hesitant to approach publishers because their strategic Campaign Map AI was at 0% completion and their 8-player multiplayer architecture was still on the drawing board.</p>
+
+          <h2>The Publisher’s Question Is Not “Is the Whole Game Built?”</h2>
+          <p>Publishers funding a 24-month or 36-month development cycle do not expect an unfunded team of six part-time developers to have finished grand campaign AI or full multiplayer netcode. If you could build all of that for free in your spare time, you would not need their $5M investment.</p>
+          <p>What a publisher’s greenlight committee actually evaluates in a Vertical Slice is much narrower:</p>
           <ul>
-            <li><strong>Locked to One Historical Scenario:</strong> Instead of an open-world sandbox, we constrained the slice to a single scripted historical scenario with deterministic triggers.</li>
-            <li><strong>Deferred Unstarted High-Risk Systems:</strong> We moved full Campaign AI and 8-player multiplayer onto the funded 36-month schedule, where the studio will have the budget to hire dedicated specialists.</li>
-            <li><strong>Capped Pre-Funding Art Assets:</strong> We reduced the immediate asset list to only the units and buildings visible during the 30-minute showcase, preventing months of unpaid burnout.</li>
+            <li><strong>Technical Proof of the Core USP:</strong> Does your riskiest technical claim actually run on target hardware at an acceptable frame rate right now?</li>
+            <li><strong>The 30-Minute Core Loop:</strong> Can an evaluator play a tight, repeatable 20-to-30-minute scenario from start to victory/defeat screen without encountering game-breaking bugs?</li>
+            <li><strong>Production Self-Awareness:</strong> Does the leadership team know what to cut today so they can hit their next deadline?</li>
           </ul>
-          <p>
-            <strong>The result:</strong> The team stopped spinning their wheels in 5 directions at once, gained immediate clarity on their next 90 days of work, and presented publishers with a realistic milestone plan.
-          </p>
+
+          <div class="callout-box">
+            <span class="callout-title">Producer’s Rule of Thumb</span>
+            <p class="mb-0 text-slate-200">Never delay a publisher pitch to build a secondary system from scratch at 0% progress. Instead, lock a <strong>scripted 30-minute Vertical Slice scenario</strong> that showcases your strongest finished mechanics, and place unstarted systems (like Grand Campaign AI or 8-player co-op) onto a costed post-funding Alpha milestone track.</p>
+          </div>
+
+          <h2>How to De-Scope Without Looking Under-Prepared</h2>
+          <p>Cutting features from your Vertical Slice only works if you pair the cut with a rigorous production plan. When we removed Campaign AI and Multiplayer from the pre-funding build on <em>Project Renaissance</em>, we immediately documented exactly when and how those features would be built once funded:</p>
+          <ul>
+            <li>We assigned dedicated post-funding engineering headcount and monthly burn rates to Campaign AI in Milestone 2 (Funded Alpha).</li>
+            <li>We defined clear fallback parameters (such as launching into Early Access with 1v1 or 2v2 multiplayer before scaling to 8 players).</li>
+            <li>We freed the core engineering team to polish UI readability, onboarding tooltips, and camera controls inside the 30-minute battle slice.</li>
+          </ul>
+          <p>The result? Instead of spending eight more unpaid months grinding on unstarted systems, the studio locked a clean, stable Vertical Slice and entered publisher meetings with a credible 36-month execution plan.</p>
         `
       },
-      /* {
+      {
         id: "tax-recoup-trap",
+        hidden: false,
         category: "Financials & P&L",
-        readTime: "4 min read",
-        date: "November 2026",
+        readTime: "5 min read",
+        date: "October 2026",
         title: "The Corporate Tax & Recoup Mistake That Almost Cost an Indie Studio $500K",
-        summary: "How a single broken formula in a studio’s P&L spreadsheet artificially inflated their publisher break-even by 63,250 copies, and how fixing it increased projected studio net profit by 76%.",
-        relatedPackage: "Solved in: 5-Hour Triage (€250) & 20-Hour Readiness Audit",
+        subtitle: "A single misplaced formula in your P&L spreadsheet can artificially inflate your publisher break-even point by 20% and wipe out over half a million dollars in projected studio profit.",
+        relatedPackage: "Package 01: 20-Hour Pitch & Diligence Readiness Audit (From €1,900)",
+        relatedLink: "index.html#services",
         content: `
-          <p>
-            Most game developers hate spreadsheets. When a publisher asks for a 36-month budget and unit economics model (P&L), founders often cobble together a quick sheet that accidentally sabotages their own pitch.
-          </p>
-          <p>
-            While auditing the financial model for a $5.06M strategy pitch (<strong>$40 SRP</strong> on Steam, <strong>50/50</strong> net revenue share after recoup), I found a critical formula error that I see across many indie spreadsheets.
-          </p>
-          <h3>The Error: Taxing Gross Revenue Before Recoup</h3>
-          <p>
-            After deducting VAT and Valve's 30% cut, a $40 game yields roughly <strong>$20 USD in net receipts per copy</strong>. However, the studio's spreadsheet was deducting a <strong>20% corporate tax</strong> right off the top of those gross receipts <em>before</em> paying back the publisher's $5.06M development budget.
-          </p>
+          <p>Game developers love building mechanics, shaders, and worlds. Almost none of them enjoy building multi-year profit-and-loss (P&L) recoupment waterfalls. Yet when you ask a publisher for $1M to $10M, your financial spreadsheet is scrutinized just as heavily as your playable build.</p>
+          <p>While auditing the financial projection workbook for a $5,060,000 USD AA strategy pitch ($40 SRP, 50/50 net revenue split after publisher recoupment), I noticed that the studio’s projected net returns looked unusually low even at 400,000 units sold ($8.0M net post-Steam revenue).</p>
+
+          <h2>The Anatomy of the Formula Error</h2>
+          <p>When I inspected the spreadsheet’s cell formulas, the culprit jumped out immediately:</p>
           <ul>
-            <li><strong>Under the broken formula:</strong> Only $16 per copy went toward recouping the $5.06M budget, requiring <strong>316,250 copies sold</strong> just for the publisher to break even.</li>
-            <li><strong>Under the corrected waterfall:</strong> Development recoup is paid back first from net post-Steam receipts ($20/unit), and corporate tax applies only to actual studio net profits after recoup.</li>
+            <li>At 400,000 copies sold ($40 SRP), gross revenue after Steam’s 30% cut, VAT, refunds, and discounts equaled roughly <strong>$20 net per copy ($8,000,000 USD)</strong>.</li>
+            <li>The studio’s spreadsheet was deducting a <strong>20% corporate tax ($1,600,000 USD)</strong> directly from the $8,000,000 gross post-Steam receipts <em>before</em> recouping the $5,060,000 development budget.</li>
+            <li>Because tax was being subtracted from gross receipts rather than net post-recoupment profit, the model left only $1,340,000 in shared upside ($669,000 for the studio), and pushed the publisher’s break-even point up to <strong>316,250 copies</strong>.</li>
           </ul>
-          <div class="article-callout">
-            <p class="mb-0">
-              <strong>The Quantified Impact:</strong> Fixing that single waterfall lowered the publisher's break-even threshold by <strong>20% (from 316,250 down to 253,000 units)</strong>, and increased the studio's projected net profit at 400,000 units by <strong>76% (+$507,000 USD, rising from $669K to $1.18M)</strong>.
-            </p>
+
+          <div class="callout-box">
+            <span class="callout-title">The Financial Impact of Fixing One Formula</span>
+            <p class="mb-0 text-slate-200">In standard publishing accounting, development budgets are recouped from net receipts <em>before</em> net profit share and corporate income taxes apply to each party’s respective profit. Correcting this single formula reduced the project’s break-even threshold by <strong>63,250 units (from 316,250 down to 253,000 copies, a 20% reduction)</strong> and increased the studio’s projected 50% net profit at 400,000 units from <strong>$669,000 to $1,176,000 USD (+76% / +$507,000 USD)</strong>.</p>
           </div>
-          <p>
-            When you walk into due diligence with clean recoup math and realistic SteamDB comparables, publishers immediately know they are dealing with a serious business partner.
-          </p>
+
+          <h2>Why Publishers Care About Your P&L Hygiene</h2>
+          <p>You might think that a conservative error only hurts the studio. In reality, handing a publisher a P&L sheet that inflates break-even by 63,000 copies can kill your deal in greenlight committee before anyone ever checks your cell formulas.</p>
+          <p>When a commercial director sees a 316,250-unit break-even requirement on a debut AA IP, their immediate reaction is: <em>“Too risky, pass.”</em> When they see a clean, accurately modeled 253,000-unit break-even backed by statutory competitor benchmarks, the conversation shifts from <em>“Can this ever recoup?”</em> to <em>“Where do we sign?”</em></p>
         `
-      }*/
+      },
       {
         id: "pre-read-guide",
+        hidden: false,
         category: "Pitch & Diligence",
-        readTime: "6 min read",
+        readTime: "7 min read",
         date: "November 2026",
         title: "Why a 15-Slide Pitch Deck Is Not Enough: What Goes Inside a 20-Page Publisher Diligence Pre-Read",
-        summary: "Founders have asked me: 'Why do I need a 20-page production and business diligence document? What do I get for that?' Here is why tier-1 publishers demand a Pre-Read before signing a $2M to $10M deal.",
-        relatedPackage: "Solved in: 40-Hour Turnkey Diligence Deep-Dive (From €4,500)",
+        subtitle: "Trying to cram your visual hook, lore, staffing ramp, armor pipeline, and P&L model into a single slide deck guarantees an unreadable presentation. Here is the 3-document hierarchy that actually closes deals.",
+        relatedPackage: "Package 02: 40-Hour Turnkey Diligence Package & Roadmap (From €4,500)",
+        relatedLink: "index.html#services",
         content: `
-          <p>
-            A great trailer and a 15-slide visual Pitch Deck will get you a first meeting with a scout at Hooded Horse, MicroProse, Raw Fury, or Kepler. <strong>It will not get you a signed $3M to $5M contract.</strong>
-          </p>
-          <p>
-            Once a publisher likes your prototype, your project is handed over to their internal Executive Producers and Finance Directors for <strong>Due Diligence</strong>. If you try to cram your entire 36-month production schedule, hiring plan, and tax model into your visual sales deck, your slides become an unreadable wall of text. If you leave them out, you fail diligence.
-          </p>
-          <h3>The 3-Part Pitch Architecture</h3>
-          <p>
-            To solve this, I structure my clients' pitch materials into three distinct documents, each built for a different stage of the publisher funnel:
-          </p>
+          <p>One of the most common mistakes indie and AA founders make is trying to build a single “master pitch deck” that does everything at once. They end up with a 35-slide monster packed with walls of 9-point font, lore timelines, and tiny spreadsheet screenshots.</p>
+          <p>If you send that 35-slide wall of text in a cold email, scouts will not read it. If you present it live on a 30-minute Zoom call, your audience will read ahead while you are speaking. And if you strip out all the production details to keep the deck pretty, the publisher’s production and finance directors will stall you in due diligence.</p>
+
+          <h2>The Solution: The 3-Part Pitch Hierarchy</h2>
+          <p>To pass both initial scouting and formal greenlight committees, I restructure every client’s pitch into three distinct documents, each engineered for a specific moment in the deal funnel:</p>
           <ul>
-            <li><strong>1. The Visual Teaser (1 to 2 Pages / Video):</strong> Built for scouts to grasp the hook, visual fidelity, and organic traction in 90 seconds.</li>
-            <li><strong>2. The 15-Slide Sales Deck:</strong> Built for the live 30-minute pitch meeting. Covers vision, core loop, market positioning, high-level timeline, and funding ask.</li>
-            <li><strong>3. The 15 to 20 Page Diligence Pre-Read (The "Bible"):</strong> Sent after the first meeting when the publisher asks, <em>"How are you actually going to build this on time and on budget?"</em></li>
+            <li><strong>Document 1: The 5-Slide Visual Teaser (Cold Outreach &amp; Event Booking):</strong> Designed to be scanned in 45 seconds. High-impact GIFs/visuals, a 1-sentence elevator pitch, core USPs, existing community traction (views/wishlists), and the headline ask. Its only goal is to book the live meeting.</li>
+            <li><strong>Document 2: The 15-Slide Live Sales Deck (Screen-Share Presentation):</strong> Built for a 20-minute spoken pitch. Minimal text per slide, clear gameplay loop diagrams, market positioning against 3 comparable titles, high-level milestone timeline, and team pedigree.</li>
+            <li><strong>Document 3: The 20-Page Diligence Pre-Read (Greenlight Committee Bible):</strong> Sent after a strong first meeting or alongside the playable build. This is where institutional trust is won.</li>
           </ul>
-          <h3>What We Put Inside Your 20-Page Diligence Pre-Read</h3>
-          <ul>
-            <li><strong>Phase-by-Phase Production Roadmap (24 to 36 Months):</strong> Clear milestone gates from Pre-Production to Vertical Slice, Alpha, Beta, and Gold.</li>
-            <li><strong>Headcount Ramp-Up &amp; Hiring Plan:</strong> Exact FTE roles, monthly burn rate by discipline, and when contractors vs. core hires onboard.</li>
-            <li><strong>Technical &amp; Pipeline Risk Register:</strong> An honest matrix of what could go wrong (e.g., multiplayer netcode, asset throughput, key-person risk) and our exact mitigation plan.</li>
-            <li><strong>Unit Economics &amp; Competitive Comps:</strong> Full P&L waterfall, break-even analysis, and benchmarked budgets against studio filings in your genre.</li>
-          </ul>
-          <p>
-            Handing a publisher a complete 20-page Pre-Read saves months of back-and-forth emails and immediately puts your studio in the top 5% of teams they evaluate.
-          </p>
+
+          <div class="callout-box">
+            <span class="callout-title">What Goes Inside the 20-Page Diligence Pre-Read?</span>
+            <p class="mb-0 text-slate-200">Your pre-read answers every operational question before the publisher’s producers even ask: 36-month phase-in staffing tables (by role and location), art asset throughput math (e.g., how 300 modular armor sets and 800 buildings are scheduled across external and internal artists), milestone gate definitions (Vertical Slice &rarr; Alpha &rarr; Beta &rarr; Gold), technical risk registers with fallback plans, and 3-scenario P&L recoupment tables.</p>
+          </div>
+
+          <h2>Turning Skepticism Into Reassurance</h2>
+          <p>When a six-person team asks for $3M to $5M, the publisher’s biggest fear is not whether your game idea is cool. Their biggest fear is operational collapse once you scale from 6 part-timers to 18 full-time developers.</p>
+          <p>Handing a publisher a structured 20-page Diligence Pre-Read immediately separates you from 95% of indie pitches. It proves that your studio already thinks, plans, and tracks risk like a seasoned production house.</p>
         `
       },
       {
         id: "why-you-need-a-producer",
-        category: "For Investors",
-        readTime: "5 min read",
+        hidden: false,
+        category: "For Investors & Studios",
+        readTime: "6 min read",
         date: "November 2026",
         title: "“We Don’t Need a Producer”: Why Technical Studios Burn Out (And What Investors Should Check Before Wiring $2M)",
-        summary: "When indie founders get money to make a game, the last role they want to pay for is a full-time producer. Here is why that decision derails projects, and how fractional production protects both founders and investors.",
-        relatedPackage: "Solved in: Embedded Fractional Producer Retainer (From €2,500/mo)",
+        subtitle: "Brilliant engineers and creative directors often view production management as overhead. Here is why studios without dedicated producers silently bleed runway, and how fractional production protects both founders and investors.",
+        relatedPackage: "Package 03: Embedded Fractional Producer (From €2,500/mo)",
+        relatedLink: "index.html#services",
         content: `
-          <p>
-            Let’s be honest about a trend in independent game development: <strong>if a technical team gets money to make a game, the one role they rarely want to hire is a full-time producer.</strong>
-          </p>
-          <p>
-            Founders want every euro on screen: more programmers, more 3D artists, more animators. Meanwhile, the CEO or Lead Programmer tries to juggle sprint planning, publisher reporting, outsourcing contracts, and budget tracking at midnight after coding all day.
-          </p>
-          <h3>What Happens 6 Months Later</h3>
+          <p>If you talk to early-stage indie teams or the VCs and incubators who back them, you will hear a familiar refrain: <em>“Everyone on the team needs to be building the game. We cannot afford a dedicated producer who doesn’t write code or make 3D art.”</em></p>
+          <p>So who ends up doing the production work? Usually, it falls onto the CEO, Lead Programmer, or Art Director at 11:00 PM after a full day of coding or reviewing assets.</p>
+
+          <h2>The Hidden Cost of Having Your Lead Engineer Act as Producer</h2>
+          <p>When a technical or creative founder tries to manage a 7-to-15-person team on the side, three predictable failures happen within six months:</p>
           <ul>
-            <li><strong>Silent Scope Creep:</strong> Without a producer enforcing milestone gates, artists model ratusan assets that design hasn't tested, and engineers refactor systems that aren't on the critical path.</li>
-            <li><strong>Founder Burnout:</strong> The creative leads spend 60% of their week in operational chaos instead of building the game.</li>
-            <li><strong>Investor Blindness:</strong> Angel investors, family offices, and non-endemic funds receive optimistic monthly updates until the studio suddenly announces they need another 12 months and $1M to reach Alpha.</li>
+            <li><strong>Invisible Dependency Bottlenecks:</strong> The Art Director scopes 400 historical armor sets and 800 buildings without calculating how many rigging and engine-integration hours each asset requires downstream. Animators and sound designers sit idle waiting on final illustrations while programmers crunch overnight before milestone reviews.</li>
+            <li><strong>Zero Risk Triage:</strong> Because nobody owns the milestone risk register, unstarted systems quietly slip from month to month until the Vertical Slice or Alpha deadline is missed.</li>
+            <li><strong>Founder Burnout During Fundraising:</strong> Preparing publisher diligence materials, updating P&L waterfalls, and tracking sprint velocity takes 10 to 15 hours a week. Every hour your GPU architect or Creative Director spends wrestling with spreadsheets is an hour stolen from the game’s core loop.</li>
           </ul>
-          <div class="article-callout">
-            <p class="mb-0">
-              <strong>The Fractional Solution (8 to 10 Hours a Week):</strong> A 6 to 15 person studio does not need a bloated €120,000/year corporate bureaucracy. They need a senior producer embedded for <strong>8 to 10 hours a week</strong> to run weekly leadership syncs, track dependencies, keep the 36-month roadmap honest, and report transparently to investors.
-            </p>
+
+          <div class="callout-box">
+            <span class="callout-title">A Checklist for Game Investors &amp; Incubators</span>
+            <p class="mb-0 text-slate-200">Before wiring seed or Series A project funding to a technical game team, ask three questions: (1) Who owns the weekly dependency board between art, design, and engineering? (2) What specific features will be cut if Milestone 2 slips by three weeks? (3) Has an independent producer audited their asset throughput math?</p>
           </div>
-          <h3>3 Questions Every Game Investor Should Ask Before Wiring Funds</h3>
-          <ul>
-            <li><strong>1. Who owns the critical path when the CEO is coding?</strong> If nobody is dedicated to dependency tracking and risk mitigation, your capital is funding trial and error.</li>
-            <li><strong>2. Does the hiring plan match the asset pipeline?</strong> Have a senior producer audit whether their promised content volume can actually be built by the headcount in their spreadsheet.</li>
-            <li><strong>3. What gets cut first if Alpha slips by 60 days?</strong> A bankable team already has a modular scope triage plan before day one of production.</li>
-          </ul>
+
+          <h2>The Fractional Producer Solution (8 to 10 Hours a Week)</h2>
+          <p>An early-stage studio does not always need a €95,000/year full-time Senior Producer on day one. What they need is <strong>senior production architecture and weekly accountability</strong>.</p>
+          <p>By embedding as a Fractional Producer for 8 to 10 hours a week (or co-signing the pitch under a pre-funding Letter of Intent that converts upon investment), I install AAA milestone discipline at a fraction of full-time executive overhead. Founders get their creative focus back, and investors get transparent, predictable milestone delivery.</p>
         `
       },
       {
         id: "pre-pitch-build-crunch",
+        hidden: false,
         category: "Pipeline & Playable Builds",
         readTime: "6 min read",
         date: "November 2026",
         title: "Why Your Sole Programmer Gets Sick Right Before the Pitch: Fixing Sequential Art Bottlenecks and Last-Minute Build Crunch",
-        summary: "When a seven-person unpaid indie team races toward a publisher pitch, a hidden dependency chain between illustration, animation, audio, and code almost always causes a last-minute crisis. Here is how to decouple your pipeline before your lead developer burns out.",
+        subtitle: "When a seven-person unpaid indie team races toward a publisher pitch, a hidden dependency chain between illustration, animation, audio, and code almost always causes a last-minute crisis. Here is how to decouple your pipeline before your lead developer burns out.",
         relatedPackage: "Package 01: 20-Hour Pitch & Diligence Readiness Audit (From €1,900)",
         relatedLink: "index.html#services",
         content: `
@@ -339,7 +323,7 @@
 
           <div class="callout-box">
             <span class="callout-title">The Production Fix: Greybox &amp; Proxy Assets</span>
-            <p class="mb-0 text-stone-200">Never let downstream departments wait on final polished art. Establish strict <strong>proxy specs</strong> (rough sketches with locked aspect ratios, frame counts, and timing markers). Once a 15-minute rough storyboard is exported at the correct resolution and duration, the animator can block out camera pans, the sound designer can lay down timing tracks, and the programmer can hook up the state machine in Unity days before the final painted illustration arrives.</p>
+            <p class="mb-0 text-slate-200">Never let downstream departments wait on final polished art. Establish strict <strong>proxy specs</strong> (rough sketches with locked aspect ratios, frame counts, and timing markers). Once a 15-minute rough storyboard is exported at the correct resolution and duration, the animator can block out camera pans, the sound designer can lay down timing tracks, and the programmer can hook up the state machine in Unity days before the final painted illustration arrives.</p>
           </div>
 
           <h2>2. Translating a Film Pitch Into a Game Pitch</h2>
@@ -354,118 +338,60 @@
 
           <h2>3. The "T-Minus 7 Days" Build Freeze Rule</h2>
           <p>Sending a playable build to a publisher the morning after you compile it is one of the highest-risk moves an indie team can make. When you have been staring at your own prototype for six months, you automatically know which buttons to press and how to avoid broken states. A publisher scout evaluating 50 builds a month does not.</p>
-          <p> By comparing an earlier mechanics prototype against the final pre-pitch build for this project, we were able to audit the player onboarding, UI clarity, and pacing from an outside producer's perspective before formal publisher reviews began.</p>
+          <p>By comparing an earlier mechanics prototype against the final pre-pitch build for this project, we were able to audit the player onboarding, UI clarity, and pacing from an outside producer’s perspective before formal publisher reviews began.</p>
           <p>If you are preparing for a publisher pitch, enforce a mandatory <strong>7-Day Build Freeze</strong> before your meeting:</p>
           <ul>
             <li><strong>T-Minus 7 Days:</strong> Feature and asset lock. Only critical crash fixes are permitted.</li>
             <li><strong>T-Minus 5 Days:</strong> External blind playtest by someone outside your team (ideally a producer or designer who has not memorized your controls).</li>
-            <li><strong>T-Minus 2 Days:</strong> Final UX polish, onboarding text tweaks, and backup video capture in case the publisher's hardware fails to run the build.</li>
+            <li><strong>T-Minus 2 Days:</strong> Final UX polish, onboarding text tweaks, and backup video capture in case the publisher’s hardware fails to run the build.</li>
           </ul>
           <p>Protecting your programmers from last-minute crunch does not just keep your team healthy. It ensures that the build a publisher opens actually reflects the brilliance of your creative vision.</p>
         `
       }
     ];
 
-    // =====================================================================
-    // AUTOMATIC RENDER ENGINE (You never need to edit below this line)
-    // =====================================================================
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function renderArticles() {
+      const jumpNav = document.getElementById('articleJumpNav');
+      const container = document.getElementById('articlesContainer');
+      const visibleArticles = ARTICLES_DATA.filter(article => !article.hidden);
 
-    const filtersContainer = document.getElementById('categoryFilters');
-    const articlesContainer = document.getElementById('articlesContainer');
-    let activeCategory = 'All';
+      visibleArticles.forEach((article, index) => {
+        const pill = document.createElement('a');
+        pill.href = `#${article.id}`;
+        pill.className = "px-3.5 py-1.5 rounded-full bg-night-900 hover:bg-ember-500/20 border border-slate-800 hover:border-ember-500/40 text-slate-200 hover:text-white text-xs font-semibold transition";
+        pill.textContent = `0${index + 1}. ${article.category}`;
+        jumpNav.appendChild(pill);
 
-    // Get unique categories
-    const categories = ['All', ...new Set(ARTICLES_DATA.map(a => a.category))];
-
-    function renderFilters() {
-      filtersContainer.innerHTML = categories.map(cat => {
-        const isActive = cat === activeCategory;
-        const activeClasses = isActive
-          ? 'bg-ember-600 text-white border-ember-500'
-          : 'bg-night-900 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white';
-        return `
-          <button type="button" data-category="${cat}" class="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition cursor-pointer ${activeClasses}">
-            ${cat}
-          </button>
+        const section = document.createElement('article');
+        section.id = article.id;
+        section.className = "rounded-3xl bg-night-900 border border-slate-800 p-6 sm:p-10 shadow-xl scroll-mt-24";
+        section.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold uppercase tracking-wider text-ember-400 mb-3 pb-4 border-t-0 border-b border-slate-800">
+            <span>Article 0${index + 1} • ${article.category}</span>
+            <span class="text-slate-400 font-medium normal-case">${article.date} • ${article.readTime}</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+            ${article.title}
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-ember-300/90 font-medium leading-relaxed">
+            ${article.subtitle}
+          </p>
+          <div class="article-prose mt-6 pt-6 border-t border-slate-800/80 text-sm sm:text-base">
+            ${article.content}
+          </div>
+          <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-night-950/80 p-5 rounded-2xl">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-ember-400 block">Related Consulting Package</span>
+              <p class="font-display font-bold text-white text-sm sm:text-base mt-0.5">${article.relatedPackage}</p>
+            </div>
+            <a href="${article.relatedLink}" class="px-4 py-2.5 rounded-xl bg-ember-600 hover:bg-ember-500 text-white font-semibold text-xs sm:text-sm text-center transition shrink-0">
+              See Package Details &rarr;
+            </a>
+          </div>
         `;
-      }).join('');
-
-      filtersContainer.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          activeCategory = btn.getAttribute('data-category');
-          renderFilters();
-          renderArticles();
-        });
+        container.appendChild(section);
       });
-    }
-
-    function renderArticles() {
-      const currentHash = window.location.hash.replace('#', '');
-      const filtered = activeCategory === 'All'
-        ? ARTICLES_DATA
-        : ARTICLES_DATA.filter(a => a.category === activeCategory);
-
-      articlesContainer.innerHTML = filtered.map((article, idx) => {
-        // Open automatically if linked via URL hash (#id) or if it's the first article
-        const shouldOpen = currentHash ? article.id === currentHash : idx === 0;
-        return `
-          <article id="${article.id}" class="rounded-3xl bg-night-900 border border-slate-800 p-6 sm:p-8 shadow-xl scroll-mt-24">
-            <details class="group" ${shouldOpen ? 'open' : ''}>
-              <summary class="cursor-pointer list-none">
-                <div class="flex flex-wrap items-center gap-2 text-xs text-ember-400 font-semibold mb-2">
-                  <span class="px-2.5 py-0.5 rounded-md bg-ember-500/15 border border-ember-500/30">${article.category}</span>
-                  <span>•</span>
-                  <span>${article.readTime}</span>
-                  <span>•</span>
-                  <span class="text-slate-400">${article.date}</span>
-                </div>
-                <div class="flex items-start justify-between gap-4">
-                  <h2 class="font-display text-xl sm:text-2xl font-bold text-white group-hover:text-ember-300 transition">
-                    ${article.title}
-                  </h2>
-                  <span class="text-ember-400 text-xl font-bold group-open:rotate-180 transition-transform shrink-0 mt-1">&darr;</span>
-                </div>
-                <p class="text-slate-300 text-sm mt-2 leading-relaxed">
-                  ${article.summary}
-                </p>
-              </summary>
-
-              <div class="article-body mt-6 pt-6 border-t border-slate-800 text-sm sm:text-base">
-                ${article.content}
-
-                <div class="mt-6 pt-5 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-night-950/60 p-4 rounded-2xl">
-                  <span class="text-xs font-semibold text-ember-300">${article.relatedPackage}</span>
-                  <div class="flex items-center gap-3">
-                    <a href="index.html#services" class="text-xs font-semibold text-white hover:text-ember-300 underline underline-offset-4">
-                      View Package Details &rarr;
-                    </a>
-                    <a href="https://cal.com/jorge-aranda-lopez-d3vboo/free-call" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-ember-600 hover:bg-ember-500 text-white text-xs font-semibold transition">
-                      Book Free 20m Call
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </details>
-          </article>
-        `;
-      }).join('');
-    }
-
-    renderFilters();
-    renderArticles();
-
-    // If user clicks an anchor link to a specific article, open and scroll to it
-    window.addEventListener('hashchange', () => {
-      activeCategory = 'All';
-      renderFilters();
-      renderArticles();
-      const targetId = window.location.hash.replace('#', '');
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    })();
   </script>
 </body>
 </html>
